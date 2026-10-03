@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ArrowDown, Github } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 import { siteConfig } from "@/lib/data";
-import NetworkVisualization from "./NetworkVisualization";
+import NetworkVisualization from "../NetworkVisualization";
+import { GithubIcon } from "@/components/Icons";
 
 export default function Hero() {
   return (
@@ -107,7 +108,7 @@ export default function Hero() {
             className="btn-secondary"
             id="hero-github-cta"
           >
-            <Github size={16} />
+            <GithubIcon size={16} />
             View GitHub
           </a>
         </motion.div>

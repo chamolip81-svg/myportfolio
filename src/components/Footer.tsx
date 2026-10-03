@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteConfig, navItems } from "@/lib/data";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -87,7 +88,7 @@ export default function Footer() {
                 }}
                 aria-label="GitHub profile"
               >
-                <Github size={16} />
+                <GithubIcon size={16} />
               </a>
               <a
                 href={siteConfig.linkedin}
@@ -101,7 +102,7 @@ export default function Footer() {
                 }}
                 aria-label="LinkedIn profile"
               >
-                <Linkedin size={16} />
+                <LinkedinIcon size={16} />
               </a>
               <a
                 href={`mailto:${siteConfig.email}`}

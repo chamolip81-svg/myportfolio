@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion } from "motion/react";
-import { Send, Github, Linkedin, Mail, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Send, Mail, CheckCircle } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import { siteConfig } from "@/lib/data";
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -38,13 +39,13 @@ export default function Contact() {
     {
       label: "GitHub",
       href: siteConfig.github,
-      icon: Github,
+      icon: GithubIcon,
       color: "#f0f0f0",
     },
     {
       label: "LinkedIn",
       href: siteConfig.linkedin,
-      icon: Linkedin,
+      icon: LinkedinIcon,
       color: "#0a66c2",
     },
     {

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { GraduationCap, BookOpen, MapPin } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import { education } from "@/lib/data";

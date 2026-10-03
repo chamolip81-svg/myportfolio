@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import { labs } from "@/lib/data";

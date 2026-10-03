@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navItems, siteConfig } from "@/lib/data";
 import CommandPalette from "./CommandPalette";
@@ -22,9 +22,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -88,7 +85,9 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
               const isActive =
-                item.href.startsWith("/") && pathname === item.href;
+                item.href === "/"
+                  ? pathname === "/"
+                  : item.href.startsWith("/") && pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.label}
@@ -177,28 +176,41 @@ export default function Navbar() {
               className="flex flex-col items-center justify-center h-full gap-2 -mt-16"
               aria-label="Mobile navigation"
             >
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
-                >
-                  <Link
-                    href={
-                      item.href.startsWith("#") && pathname !== "/"
-                        ? `/${item.href}`
-                        : item.href
-                    }
-                    onClick={() => handleNavClick(item.href)}
-                    className="block text-2xl font-medium py-3 px-6 rounded-lg transition-colors duration-200"
-                    style={{ color: "var(--text-secondary)" }}
-                    id={`mobile-nav-${item.label.toLowerCase()}`}
+              {navItems.map((item, index) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : item.href.startsWith("/") && pathname.startsWith(item.href);
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + index * 0.05 }}
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={
+                        item.href.startsWith("#") && pathname !== "/"
+                          ? `/${item.href}`
+                          : item.href
+                      }
+                      onClick={() => handleNavClick(item.href)}
+                      className="block text-xl font-medium py-2 px-6 rounded-lg transition-colors duration-200 text-center"
+                      style={{
+                        color: isActive
+                          ? "var(--accent-blue)"
+                          : "var(--text-secondary)",
+                        background: isActive
+                          ? "rgba(59, 130, 246, 0.1)"
+                          : "transparent",
+                      }}
+                      id={`mobile-nav-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { MapPin, GraduationCap } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import { siteConfig } from "@/lib/data";
