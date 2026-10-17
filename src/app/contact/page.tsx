@@ -20,11 +20,30 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const validate = useCallback(() => {
+    const errs: Record<string, string> = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errs.name = "Please enter your name (at least 2 characters).";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      errs.email = "Please enter a valid email address.";
+    }
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      errs.message = "Message must be at least 10 characters long.";
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }, [formData]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      if (!validate()) return;
+
       const subject = encodeURIComponent(
         formData.subject || `Message from ${formData.name} via Portfolio`
       );
@@ -38,7 +57,7 @@ export default function ContactPage() {
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 4000);
     },
-    [formData]
+    [formData, validate]
   );
 
   const faqs = [
@@ -194,17 +213,25 @@ export default function ContactPage() {
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, name: e.target.value }))
-                    }
+                    onChange={(e) => {
+                      setFormData((p) => ({ ...p, name: e.target.value }));
+                      if (errors.name) setErrors((p) => ({ ...p, name: "" }));
+                    }}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                     className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-all"
                     style={{
                       background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
+                      border: `1px solid ${errors.name ? "#f43f5e80" : "var(--border-primary)"}`,
                       color: "var(--text-primary)",
                     }}
                     placeholder="Jane Doe"
                   />
+                  {errors.name && (
+                    <p id="name-error" className="text-xs font-mono mt-1 text-rose-400">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -219,17 +246,25 @@ export default function ContactPage() {
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, email: e.target.value }))
-                    }
+                    onChange={(e) => {
+                      setFormData((p) => ({ ...p, email: e.target.value }));
+                      if (errors.email) setErrors((p) => ({ ...p, email: "" }));
+                    }}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-all"
                     style={{
                       background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
+                      border: `1px solid ${errors.email ? "#f43f5e80" : "var(--border-primary)"}`,
                       color: "var(--text-primary)",
                     }}
                     placeholder="jane@example.com"
                   />
+                  {errors.email && (
+                    <p id="email-error" className="text-xs font-mono mt-1 text-rose-400">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -269,17 +304,25 @@ export default function ContactPage() {
                   required
                   rows={5}
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData((p) => ({ ...p, message: e.target.value }))
-                  }
+                  onChange={(e) => {
+                    setFormData((p) => ({ ...p, message: e.target.value }));
+                    if (errors.message) setErrors((p) => ({ ...p, message: "" }));
+                  }}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                   className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-all resize-none"
                   style={{
                     background: "var(--bg-tertiary)",
-                    border: "1px solid var(--border-primary)",
+                    border: `1px solid ${errors.message ? "#f43f5e80" : "var(--border-primary)"}`,
                     color: "var(--text-primary)",
                   }}
                   placeholder="Write your message here..."
                 />
+                {errors.message && (
+                  <p id="message-error" className="text-xs font-mono mt-1 text-rose-400">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
               <button

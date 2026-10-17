@@ -13,11 +13,30 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const validate = useCallback(() => {
+    const errs: Record<string, string> = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errs.name = "Please enter your name (at least 2 characters).";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      errs.email = "Please enter a valid email address.";
+    }
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      errs.message = "Message must be at least 10 characters long.";
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }, [formData]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      if (!validate()) return;
+
       // Open mail client with pre-filled data
       const subject = encodeURIComponent(
         `Message from ${formData.name} via Portfolio`
@@ -32,7 +51,7 @@ export default function Contact() {
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 3000);
     },
-    [formData]
+    [formData, validate]
   );
 
   const contactLinks = [
@@ -164,20 +183,28 @@ export default function Contact() {
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
                         name: e.target.value,
-                      }))
-                    }
+                      }));
+                      if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
+                    }}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "contact-name-error" : undefined}
                     className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all duration-200"
                     style={{
                       background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
+                      border: `1px solid ${errors.name ? "#f43f5e80" : "var(--border-primary)"}`,
                       color: "var(--text-primary)",
                     }}
                     placeholder="Your name"
                   />
+                  {errors.name && (
+                    <p id="contact-name-error" className="text-xs font-mono mt-1 text-rose-400">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -193,20 +220,28 @@ export default function Contact() {
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
                         email: e.target.value,
-                      }))
-                    }
+                      }));
+                      if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+                    }}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "contact-email-error" : undefined}
                     className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all duration-200"
                     style={{
                       background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
+                      border: `1px solid ${errors.email ? "#f43f5e80" : "var(--border-primary)"}`,
                       color: "var(--text-primary)",
                     }}
                     placeholder="your@email.com"
                   />
+                  {errors.email && (
+                    <p id="contact-email-error" className="text-xs font-mono mt-1 text-rose-400">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -222,20 +257,28 @@ export default function Contact() {
                     required
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
                         message: e.target.value,
-                      }))
-                    }
+                      }));
+                      if (errors.message) setErrors((prev) => ({ ...prev, message: "" }));
+                    }}
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? "contact-message-error" : undefined}
                     className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all duration-200 resize-none"
                     style={{
                       background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
+                      border: `1px solid ${errors.message ? "#f43f5e80" : "var(--border-primary)"}`,
                       color: "var(--text-primary)",
                     }}
                     placeholder="Your message..."
                   />
+                  {errors.message && (
+                    <p id="contact-message-error" className="text-xs font-mono mt-1 text-rose-400">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <button

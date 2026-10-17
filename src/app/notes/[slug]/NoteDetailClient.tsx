@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -7,8 +8,53 @@ import {
   Calendar,
   Clock,
   ArrowRight,
+  Copy,
+  Check,
 } from "lucide-react";
 import type { TechnicalNote } from "@/lib/data";
+
+function CodeSnippet({ code }: { code: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback
+    }
+  };
+
+  return (
+    <div className="relative group my-5 rounded-xl overflow-hidden border border-[var(--border-primary)] bg-[var(--bg-tertiary)]">
+      <div className="flex items-center justify-between px-4 py-2 border-b border-[var(--border-primary)] bg-black/40">
+        <span className="text-[11px] font-mono text-[var(--text-muted)]">Code Snippet</span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono transition-colors bg-white/5 hover:bg-white/10 text-[var(--text-secondary)] hover:text-white cursor-pointer"
+          aria-label={copied ? "Code snippet copied" : "Copy code snippet"}
+        >
+          {copied ? (
+            <>
+              <Check size={12} className="text-emerald-400" />
+              <span className="text-emerald-400 text-[11px]">Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy size={12} />
+              <span className="text-[11px]">Copy</span>
+            </>
+          )}
+        </button>
+      </div>
+      <pre className="p-4 font-mono text-xs overflow-x-auto text-[#38bdf8] leading-relaxed">
+        <code>{code}</code>
+      </pre>
+    </div>
+  );
+}
 
 export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
   return (
@@ -118,19 +164,7 @@ export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
               }
               if (trimmed.startsWith("```")) {
                 const code = trimmed.replace(/```[a-z]*\n?/g, "").trim();
-                return (
-                  <pre
-                    key={idx}
-                    className="p-4 rounded-xl font-mono text-xs overflow-x-auto my-4"
-                    style={{
-                      background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border-primary)",
-                      color: "#38bdf8",
-                    }}
-                  >
-                    <code>{code}</code>
-                  </pre>
-                );
+                return <CodeSnippet key={idx} code={code} />;
               }
               if (trimmed.startsWith("|")) {
                 const rows = trimmed.split("\n").filter((r) => !r.includes("---"));

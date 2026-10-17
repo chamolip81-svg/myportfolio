@@ -1,15 +1,30 @@
-import type { Metadata } from "next";
+import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact & Connect — Priyanshu Chamoli",
+export const metadata = createPageMetadata({
+  title: "Contact",
   description:
     "Get in touch with Priyanshu Chamoli regarding technology discussions, undergraduate opportunities, networking/cloud questions, or collaborations.",
-};
+  path: "/contact",
+  keywords: ["contact", "connect", "email", "LinkedIn", "GitHub"],
+});
 
 export default function ContactLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const breadcrumbSchema = createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {children}
+    </>
+  );
 }

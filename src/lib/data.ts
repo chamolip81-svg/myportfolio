@@ -223,6 +223,16 @@ export const labs: Lab[] = [
     href: "/labs#terminal",
     tag: "Simulation",
   },
+  {
+    id: "cloud-vpc",
+    title: "AWS Multi-Tier VPC Architect",
+    description:
+      "Interactive architectural blueprint exploring public, private, and database subnets with NAT routing and Multi-AZ replication.",
+    icon: Cloud,
+    color: "#06b6d4",
+    href: "/labs#cloud",
+    tag: "Architecture",
+  },
 ];
 
 // ==========================================
@@ -782,7 +792,17 @@ export const commandItems: CommandItem[] = [
   { label: "About Priyanshu", href: "/about", category: "Navigation", icon: Code2 },
   { label: "Projects Directory", href: "/projects", category: "Projects", icon: Globe },
   { label: "Interactive Labs Hub", href: "/labs", category: "Labs", icon: Layers },
+  { label: "Subnet & CIDR Calculator", href: "/labs#subnet", category: "Labs", icon: Server },
+  { label: "OSI 7-Layer Reference", href: "/labs#osi", category: "Labs", icon: Layers },
+  { label: "Interactive Packet Lab", href: "/labs#networking", category: "Labs", icon: Network },
+  { label: "HTTP Request Lifecycle", href: "/labs#http", category: "Labs", icon: Globe },
+  { label: "Linux Web Terminal", href: "/labs#terminal", category: "Labs", icon: Terminal },
+  { label: "AWS Cloud VPC Blueprint", href: "/labs#cloud", category: "Labs", icon: Cloud },
   { label: "Technical Notes & Articles", href: "/notes", category: "Writing", icon: BookOpen },
+  { label: "Note: TCP 3-Way Handshake", href: "/notes/tcp-handshake-lifecycle", category: "Writing", icon: BookOpen },
+  { label: "Note: CIDR & Subnetting", href: "/notes/cidr-subnetting-guide", category: "Writing", icon: BookOpen },
+  { label: "Note: Containers vs VMs", href: "/notes/containers-vs-vms", category: "Writing", icon: BookOpen },
+  { label: "Note: DNS Resolution Path", href: "/notes/dns-resolution-path", category: "Writing", icon: BookOpen },
   { label: "Virtual Lab & Uses", href: "/setup", category: "Setup", icon: Wrench },
   { label: "Travel Dost Case Study", href: "/projects/travel-dost", category: "Projects", icon: Globe },
   { label: "Contact Priyanshu", href: "/contact", category: "Navigation", icon: Globe },

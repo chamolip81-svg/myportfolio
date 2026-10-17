@@ -1,15 +1,30 @@
-import type { Metadata } from "next";
+import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About — Priyanshu Chamoli",
+export const metadata = createPageMetadata({
+  title: "About",
   description:
-    "Learn about Priyanshu Chamoli's background, education in IT at Dehradun, learning philosophy, and technical exploration in networking, Linux, and cloud computing.",
-};
+    "Learn about Priyanshu Chamoli's academic IT background at Dehradun, learning philosophy, and hands-on explorations in networking, Linux, and cloud infrastructure.",
+  path: "/about",
+  keywords: ["education", "Dehradun", "background", "philosophy"],
+});
 
 export default function AboutLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const breadcrumbSchema = createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {children}
+    </>
+  );
 }

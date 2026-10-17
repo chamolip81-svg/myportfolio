@@ -49,6 +49,8 @@ export default function CommandPalette() {
         const el = document.querySelector(href);
         if (el) {
           el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push(`/${href}`);
         }
       } else {
         router.push(href);
