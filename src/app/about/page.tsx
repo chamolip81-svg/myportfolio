@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -146,14 +147,19 @@ export default function AboutPage() {
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-xl font-bold"
+                  className="relative w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0 border border-[var(--border-primary)] bg-[var(--bg-tertiary)] flex items-center justify-center"
                   style={{
-                    background: "var(--gradient-primary)",
-                    color: "white",
                     boxShadow: "0 8px 24px rgba(59, 130, 246, 0.25)",
                   }}
                 >
-                  PC
+                  <Image
+                    src="/android-chrome-192x192.png"
+                    alt="Priyanshu Chamoli"
+                    width={64}
+                    height={64}
+                    priority
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3

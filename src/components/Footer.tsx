@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig, navItems } from "@/lib/data";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
@@ -24,14 +25,14 @@ export default function Footer() {
               className="inline-flex items-center gap-2 font-semibold text-sm mb-3"
               style={{ color: "var(--text-primary)" }}
             >
-              <div
-                className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold"
-                style={{
-                  background: "var(--gradient-primary)",
-                  color: "white",
-                }}
-              >
-                PC
+              <div className="relative w-7 h-7 rounded-md overflow-hidden flex-shrink-0 border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] flex items-center justify-center">
+                <Image
+                  src="/apple-touch-icon.png"
+                  alt="Priyanshu Chamoli logo"
+                  width={28}
+                  height={28}
+                  className="w-full h-full object-cover"
+                />
               </div>
               {siteConfig.name}
             </Link>

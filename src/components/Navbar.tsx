@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -69,14 +70,15 @@ export default function Navbar() {
             style={{ color: "var(--text-primary)" }}
             id="nav-logo"
           >
-            <div
-              className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold"
-              style={{
-                background: "var(--gradient-primary)",
-                color: "white",
-              }}
-            >
-              PC
+            <div className="relative w-7 h-7 rounded-md overflow-hidden flex-shrink-0 border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] flex items-center justify-center">
+              <Image
+                src="/apple-touch-icon.png"
+                alt="Priyanshu Chamoli logo"
+                width={28}
+                height={28}
+                priority
+                className="w-full h-full object-cover"
+              />
             </div>
             <span className="hidden sm:inline">{siteConfig.name}</span>
           </Link>
