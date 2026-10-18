@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://priyanshuchamoli.dev/sitemap.xml",
+    sitemap: "https://www.priyanshuchamoli.dev/sitemap.xml",
+    host: "https://www.priyanshuchamoli.dev",
   };
 }

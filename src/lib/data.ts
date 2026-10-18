@@ -23,8 +23,8 @@ export const siteConfig = {
   name: "Priyanshu Chamoli",
   title: "Priyanshu Chamoli | IT Student & Developer",
   description:
-    "Priyanshu Chamoli is an IT student and developer from Dehradun, India, exploring networking, cloud computing, Linux, virtual labs, security fundamentals and software development.",
-  url: "https://priyanshuchamoli.dev",
+    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+  url: "https://www.priyanshuchamoli.dev",
   locale: "en_IN",
   positioning: "IT Student & Developer",
   location: "Dehradun, Uttarakhand, India",
@@ -707,8 +707,8 @@ export interface Education {
 export const education: Education = {
   degree: "B.Sc.",
   field: "Information Technology",
-  institution: "Combined (PG) Institute of Medical Sciences & Research",
-  location: "Dehradun, Uttarakhand, India",
+  institution: "Combined (PG) Institute of Medical Sciences & Research (CIMS)",
+  location: "Kuanwala, Dehradun, Uttarakhand, India",
   status: "Currently pursuing",
   areas: [
     "Computer Networks",

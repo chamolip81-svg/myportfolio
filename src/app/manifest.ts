@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Priyanshu Chamoli | IT Student & Developer",
     short_name: "Priyanshu Chamoli",
     description:
-      "IT student and developer from Dehradun, India, exploring networking, cloud computing, Linux, virtual labs, security fundamentals, and software development.",
+      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
     start_url: "/",
     display: "standalone",
     background_color: "#09090b",

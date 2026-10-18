@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 import NetworkVisualization from "../NetworkVisualization";
-import { GithubIcon } from "@/components/Icons";
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Hero() {
   return (
@@ -107,9 +107,21 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="btn-secondary"
             id="hero-github-cta"
+            aria-label="Priyanshu Chamoli GitHub Profile"
           >
             <GithubIcon size={16} />
-            View GitHub
+            GitHub
+          </a>
+          <a
+            href={siteConfig.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+            id="hero-linkedin-cta"
+            aria-label="Priyanshu Chamoli LinkedIn Profile"
+          >
+            <LinkedinIcon size={16} />
+            LinkedIn
           </a>
         </motion.div>
 

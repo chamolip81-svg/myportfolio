@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const siteBaseUrl = "https://priyanshuchamoli.dev";
+export const siteBaseUrl = "https://www.priyanshuchamoli.dev";
 
 export interface PageMetadataProps {
   title: string;
@@ -18,19 +18,24 @@ export function createPageMetadata({
   path,
   keywords = [],
 }: PageMetadataProps): Metadata {
-  const url = `${siteBaseUrl}${path === "/" ? "" : path}`;
+  const url = path === "/" ? `${siteBaseUrl}/` : `${siteBaseUrl}${path}`;
 
   return {
     title,
     description,
     keywords: [
       "Priyanshu Chamoli",
+      "Priyanshu Chamoli developer",
+      "Priyanshu Chamoli portfolio",
+      "Priyanshu Chamoli LinkedIn",
+      "Priyanshu Chamoli IT student",
       "IT student",
       "developer",
       "Dehradun",
       "networking",
       "Linux",
       "cloud computing",
+      "virtual labs",
       ...keywords,
     ],
     alternates: {
@@ -66,7 +71,7 @@ export function createBreadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${siteBaseUrl}${item.path === "/" ? "" : item.path}`,
+      item: item.path === "/" ? `${siteBaseUrl}/` : `${siteBaseUrl}${item.path}`,
     })),
   };
 }
@@ -96,13 +101,13 @@ export function createTechArticleSchema({
     datePublished,
     author: {
       "@type": "Person",
-      "@id": "https://priyanshuchamoli.dev/#person",
+      "@id": "https://www.priyanshuchamoli.dev/#person",
       name: "Priyanshu Chamoli",
-      url: siteBaseUrl,
+      url: `${siteBaseUrl}/`,
     },
     publisher: {
       "@type": "Person",
-      "@id": "https://priyanshuchamoli.dev/#person",
+      "@id": "https://www.priyanshuchamoli.dev/#person",
       name: "Priyanshu Chamoli",
     },
     keywords: tags.join(", "),
@@ -137,9 +142,9 @@ export function createProjectSchema({
     url: `${siteBaseUrl}${path}`,
     author: {
       "@type": "Person",
-      "@id": "https://priyanshuchamoli.dev/#person",
+      "@id": "https://www.priyanshuchamoli.dev/#person",
       name: "Priyanshu Chamoli",
-      url: siteBaseUrl,
+      url: `${siteBaseUrl}/`,
     },
     keywords: technologies.join(", "),
   };

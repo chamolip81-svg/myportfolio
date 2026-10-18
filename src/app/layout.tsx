@@ -18,15 +18,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://priyanshuchamoli.dev"),
+  metadataBase: new URL("https://www.priyanshuchamoli.dev"),
   title: {
     default: "Priyanshu Chamoli | IT Student & Developer",
     template: "%s | Priyanshu Chamoli",
   },
   description:
-    "Priyanshu Chamoli is an IT student and developer from Dehradun, India, exploring networking, cloud computing, Linux, virtual labs, security fundamentals and software development.",
+    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
   keywords: [
     "Priyanshu Chamoli",
+    "Priyanshu Chamoli developer",
+    "Priyanshu Chamoli portfolio",
+    "Priyanshu Chamoli LinkedIn",
+    "Priyanshu Chamoli IT student",
     "IT student",
     "developer",
     "Dehradun",
@@ -36,8 +40,10 @@ export const metadata: Metadata = {
     "web development",
     "virtual labs",
     "TCP/IP",
+    "Cisco Packet Tracer",
+    "Proxmox VE",
   ],
-  authors: [{ name: "Priyanshu Chamoli", url: "https://priyanshuchamoli.dev" }],
+  authors: [{ name: "Priyanshu Chamoli", url: "https://www.priyanshuchamoli.dev" }],
   creator: "Priyanshu Chamoli",
   alternates: {
     canonical: "/",
@@ -45,17 +51,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://priyanshuchamoli.dev",
+    url: "https://www.priyanshuchamoli.dev",
     title: "Priyanshu Chamoli | IT Student & Developer",
     description:
-      "IT student and developer from Dehradun, India, exploring networking, cloud computing, Linux, virtual labs, security fundamentals and software development.",
+      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
     siteName: "Priyanshu Chamoli",
   },
   twitter: {
     card: "summary_large_image",
     title: "Priyanshu Chamoli | IT Student & Developer",
     description:
-      "IT student and developer from Dehradun, India, exploring networking, cloud computing, Linux, and software development.",
+      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
     creator: "@chamolip81",
   },
   robots: {
@@ -115,11 +121,11 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Person",
-                  "@id": "https://priyanshuchamoli.dev/#person",
+                  "@id": "https://www.priyanshuchamoli.dev/#person",
                   name: "Priyanshu Chamoli",
                   jobTitle: "IT Student & Developer",
                   description:
-                    "IT undergraduate student and developer exploring networking, cloud computing, Linux administration, and software development.",
+                    "IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
                   address: {
                     "@type": "PostalAddress",
                     addressLocality: "Dehradun",
@@ -127,37 +133,60 @@ export default function RootLayout({
                     addressCountry: "IN",
                   },
                   email: "chamolip81@gmail.com",
-                  url: "https://priyanshuchamoli.dev",
+                  url: "https://www.priyanshuchamoli.dev/",
                   sameAs: [
-                    "https://github.com/chamolip81-svg",
                     "https://www.linkedin.com/in/priyanshu-chamoli-67522532b",
+                    "https://github.com/chamolip81-svg",
                   ],
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "Combined (PG) Institute of Medical Sciences & Research (CIMS)",
+                    address: {
+                      "@type": "PostalAddress",
+                      addressLocality: "Kuanwala, Dehradun",
+                      addressRegion: "Uttarakhand",
+                      addressCountry: "IN",
+                    },
+                  },
                   knowsAbout: [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "C",
+                    "C++",
+                    "Python",
+                    "SQL",
+                    "MySQL",
+                    "Git",
+                    "GitHub",
+                    "Linux Administration",
+                    "Bash Scripting",
                     "Computer Networking",
                     "TCP/IP Protocols",
                     "Subnetting & CIDR",
-                    "Linux Administration",
-                    "Cloud Computing",
-                    "Web Development",
+                    "Cisco Packet Tracer",
+                    "Cloud Computing Fundamentals",
+                    "Virtual Labs",
+                    "Proxmox VE",
                   ],
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://priyanshuchamoli.dev/#website",
+                  "@id": "https://www.priyanshuchamoli.dev/#website",
                   name: "Priyanshu Chamoli",
-                  url: "https://priyanshuchamoli.dev",
+                  url: "https://www.priyanshuchamoli.dev/",
                   description:
-                    "Portfolio and technical lab environment of Priyanshu Chamoli, an IT student and developer from Dehradun, India.",
-                  author: { "@id": "https://priyanshuchamoli.dev/#person" },
-                  publisher: { "@id": "https://priyanshuchamoli.dev/#person" },
+                    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+                  author: { "@id": "https://www.priyanshuchamoli.dev/#person" },
+                  publisher: { "@id": "https://www.priyanshuchamoli.dev/#person" },
                   inLanguage: "en-IN",
                 },
                 {
                   "@type": "ProfilePage",
-                  "@id": "https://priyanshuchamoli.dev/#profile",
-                  url: "https://priyanshuchamoli.dev",
+                  "@id": "https://www.priyanshuchamoli.dev/#profile",
+                  url: "https://www.priyanshuchamoli.dev/",
                   name: "Priyanshu Chamoli — Portfolio",
-                  mainEntity: { "@id": "https://priyanshuchamoli.dev/#person" },
+                  mainEntity: { "@id": "https://www.priyanshuchamoli.dev/#person" },
                 },
               ],
             }),
