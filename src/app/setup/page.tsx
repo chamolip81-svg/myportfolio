@@ -66,9 +66,9 @@ export default function SetupPage() {
               <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--accent-blue)]">
                 <Server size={14} /> Virtualized Topology
               </span>
-              <h3 className="text-xl font-bold text-[var(--text-primary)]">
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">
                 Isolated Local Lab Network
-              </h3>
+              </h2>
               <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl leading-relaxed">
                 Rather than experimenting directly on host systems, all network service configurations,
                 firewall rule testing, and headless server testing occur inside isolated host-only / NAT
@@ -93,12 +93,12 @@ export default function SetupPage() {
               transition={{ duration: 0.5, delay: catIdx * 0.1 }}
             >
               <div className="mb-6">
-                <h3
+                <h2
                   className="text-xl font-bold mb-1"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {category.title}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm" style={{ color: "var(--text-tertiary)" }}>
                   {category.description}
                 </p>
@@ -129,12 +129,12 @@ export default function SetupPage() {
                         )}
                       </div>
 
-                      <h4
+                      <h3
                         className="text-base font-bold mb-1.5"
                         style={{ color: "var(--text-primary)" }}
                       >
                         {item.name}
-                      </h4>
+                      </h3>
                       <p
                         className="text-xs leading-relaxed"
                         style={{ color: "var(--text-secondary)" }}

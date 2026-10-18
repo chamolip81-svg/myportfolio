@@ -201,9 +201,9 @@ export default function ContactPage() {
             className="space-y-4"
           >
             <div className="glass-card p-6 space-y-4">
-              <h3 className="text-base font-bold text-[var(--text-primary)]">
+              <h2 className="text-base font-bold text-[var(--text-primary)]">
                 Direct Channels
-              </h3>
+              </h2>
 
               <div className="p-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-primary)] space-y-2">
                 <a
@@ -288,6 +288,9 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="lg:col-span-2 glass-card p-6 md:p-8"
           >
+            <h2 className="text-xl font-bold mb-6 text-[var(--text-primary)]">
+              Send a Direct Message
+            </h2>
             {status === "success" ? (
               <div
                 className="text-center py-10 px-4 space-y-4"

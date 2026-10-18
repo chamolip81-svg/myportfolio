@@ -1,11 +1,11 @@
 import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "About",
+  title: "About Me & Technical Background",
   description:
-    "Learn about Priyanshu Chamoli's academic IT background at Dehradun, learning philosophy, and hands-on explorations in networking, Linux, and cloud infrastructure.",
+    "Learn about Priyanshu Chamoli's academic IT background at Dehradun, learning philosophy, and practical labs in networking, Linux, and cloud infrastructure.",
   path: "/about",
-  keywords: ["education", "Dehradun", "background", "philosophy"],
+  keywords: ["about", "education", "Dehradun", "background", "philosophy", "CIMS"],
 });
 
 export default function AboutLayout({

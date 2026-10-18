@@ -48,12 +48,21 @@ export function createPageMetadata({
       title: `${title} | Priyanshu Chamoli`,
       description,
       siteName: "Priyanshu Chamoli",
+      images: [
+        {
+          url: `${siteBaseUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${title} — Priyanshu Chamoli`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Priyanshu Chamoli`,
       description,
       creator: "@chamolip81",
+      images: [`${siteBaseUrl}/opengraph-image`],
     },
   };
 }

@@ -65,12 +65,12 @@ function NetworkingLab() {
 
   return (
     <div className="glass-card p-6 md:p-8" id="networking">
-      <h3
+      <h2
         className="text-xl font-bold mb-2"
         style={{ color: "var(--text-primary)" }}
       >
         Networking Lab
-      </h3>
+      </h2>
       <p
         className="text-sm mb-8"
         style={{ color: "var(--text-tertiary)" }}
@@ -209,12 +209,12 @@ function OSIModelExplorer() {
 
   return (
     <div className="glass-card p-6 md:p-8" id="osi">
-      <h3
+      <h2
         className="text-xl font-bold mb-2"
         style={{ color: "var(--text-primary)" }}
       >
         OSI Model Explorer
-      </h3>
+      </h2>
       <p
         className="text-sm mb-8"
         style={{ color: "var(--text-tertiary)" }}
@@ -470,12 +470,12 @@ function SubnetCalculator() {
   return (
     <div className="glass-card p-6 md:p-8" id="subnet">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-        <h3
+        <h2
           className="text-xl font-bold"
           style={{ color: "var(--text-primary)" }}
         >
           IP / Subnet Lab & CIDR Engine
-        </h3>
+        </h2>
         <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 self-start md:self-auto">
           RFC 3021 & Classless Addressing Compatible
         </span>
@@ -650,12 +650,12 @@ function HTTPVisualizer() {
   return (
     <div className="glass-card p-6 md:p-8" id="http">
       <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
-        <h3
+        <h2
           className="text-xl font-bold"
           style={{ color: "var(--text-primary)" }}
         >
           HTTP Request Visualizer
-        </h3>
+        </h2>
         <button
           onClick={animate}
           disabled={isAnimating}
@@ -1068,9 +1068,9 @@ function CloudVPCVisualizer() {
             <Cloud size={13} />
             <span>AWS Multi-Tier VPC Architect • 10.0.0.0/16</span>
           </div>
-          <h3 className="text-xl font-bold text-[var(--text-primary)]">
+          <h2 className="text-xl font-bold text-[var(--text-primary)]">
             Cloud & VPC Architecture Blueprint
-          </h3>
+          </h2>
           <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
             An interactive multi-AZ architecture model demonstrating defense-in-depth network segmentation.
           </p>
@@ -1328,8 +1328,9 @@ export default function LabsPage() {
         </Link>
 
         <SectionHeading
+          as="h1"
           label="Interactive Labs"
-          title="Learning Through Exploration"
+          title="Interactive Labs & Architecture Blueprints"
           description="Educational interactive visualizations to explore networking, protocols, and system concepts. These are learning tools, not claimed professional projects."
           align="left"
         />

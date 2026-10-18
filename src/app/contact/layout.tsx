@@ -1,11 +1,11 @@
 import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Contact",
+  title: "Contact & Collaboration",
   description:
     "Get in touch with Priyanshu Chamoli regarding technology discussions, undergraduate opportunities, networking/cloud questions, or collaborations.",
   path: "/contact",
-  keywords: ["contact", "connect", "email", "LinkedIn", "GitHub"],
+  keywords: ["contact", "connect", "email", "LinkedIn", "GitHub", "hire"],
 });
 
 export default function ContactLayout({

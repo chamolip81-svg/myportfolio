@@ -154,7 +154,7 @@ export default function AboutPage() {
                 >
                   <Image
                     src="/android-chrome-192x192.png"
-                    alt="Priyanshu Chamoli"
+                    alt="Priyanshu Chamoli portrait avatar"
                     width={64}
                     height={64}
                     priority
@@ -217,12 +217,12 @@ export default function AboutPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="lg:col-span-2 glass-card p-6 md:p-8 space-y-5"
           >
-            <h3
+            <h2
               className="text-xl font-bold"
               style={{ color: "var(--text-primary)" }}
             >
               My Story & Technical Perspective
-            </h3>
+            </h2>
             <p
               className="text-sm md:text-base leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
@@ -243,62 +243,66 @@ export default function AboutPage() {
               grasp of <strong>first principles</strong>:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div
-                className="p-3.5 rounded-lg text-xs space-y-1"
+              <Link
+                href="/labs#networking"
+                className="p-3.5 rounded-lg text-xs space-y-1 block hover:border-blue-500/40 transition-colors"
                 style={{
                   background: "var(--bg-tertiary)",
                   border: "1px solid var(--border-primary)",
                 }}
               >
-                <p className="font-semibold" style={{ color: "var(--text-primary)" }}>
+                <p className="font-semibold text-blue-400">
                   🌐 Networking Fundamentals
                 </p>
                 <p style={{ color: "var(--text-tertiary)" }}>
-                  Subnetting, OSI stack, routing protocols, and packet flows.
+                  Subnetting math, OSI protocol stack, routing, and packet flows.
                 </p>
-              </div>
-              <div
-                className="p-3.5 rounded-lg text-xs space-y-1"
+              </Link>
+              <Link
+                href="/setup"
+                className="p-3.5 rounded-lg text-xs space-y-1 block hover:border-emerald-500/40 transition-colors"
                 style={{
                   background: "var(--bg-tertiary)",
                   border: "1px solid var(--border-primary)",
                 }}
               >
-                <p className="font-semibold" style={{ color: "var(--text-primary)" }}>
+                <p className="font-semibold text-emerald-400">
                   🐧 Linux & Systems
                 </p>
                 <p style={{ color: "var(--text-tertiary)" }}>
-                  Command line navigation, process management, and shell scripting.
+                  Command line navigation, virtual labs, and shell scripting.
                 </p>
-              </div>
-              <div
-                className="p-3.5 rounded-lg text-xs space-y-1"
+              </Link>
+              <Link
+                href="/labs#cloud"
+                className="p-3.5 rounded-lg text-xs space-y-1 block hover:border-cyan-500/40 transition-colors"
                 style={{
                   background: "var(--bg-tertiary)",
                   border: "1px solid var(--border-primary)",
                 }}
               >
-                <p className="font-semibold" style={{ color: "var(--text-primary)" }}>
+                <p className="font-semibold text-cyan-400">
                   ☁️ Cloud Architecture
                 </p>
                 <p style={{ color: "var(--text-tertiary)" }}>
                   Virtual Private Clouds, multi-tier isolation, and load balancers.
                 </p>
-              </div>
-              <div
-                className="p-3.5 rounded-lg text-xs space-y-1"
+              </Link>
+              <Link
+                href="/projects/travel-dost"
+                className="p-3.5 rounded-lg text-xs space-y-1 block hover:border-purple-500/40 transition-colors"
                 style={{
                   background: "var(--bg-tertiary)",
                   border: "1px solid var(--border-primary)",
                 }}
               >
-                <p className="font-semibold" style={{ color: "var(--text-primary)" }}>
-                  💻 Web & Software
+                <p className="font-semibold text-purple-400">
+                  💻 Travel Dost & Web Apps
                 </p>
                 <p style={{ color: "var(--text-tertiary)" }}>
                   Clean JavaScript, responsive UI interfaces, and SQL databases.
                 </p>
-              </div>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -332,12 +336,12 @@ export default function AboutPage() {
                   >
                     <Icon size={20} />
                   </div>
-                  <h4
+                  <h3
                     className="text-base font-bold mb-2"
                     style={{ color: "var(--text-primary)" }}
                   >
                     {pillar.title}
-                  </h4>
+                  </h3>
                   <p
                     className="text-xs leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
@@ -397,12 +401,12 @@ export default function AboutPage() {
                     </div>
                     <div className="flex items-center gap-2 mb-2">
                       <Icon size={18} style={{ color: m.color }} />
-                      <h4
+                      <h3
                         className="text-base font-bold"
                         style={{ color: "var(--text-primary)" }}
                       >
                         {m.title}
-                      </h4>
+                      </h3>
                     </div>
                     <p
                       className="text-xs sm:text-sm leading-relaxed"
@@ -426,12 +430,12 @@ export default function AboutPage() {
             >
               Formal Education
             </span>
-            <h3
+            <h2
               className="text-xl font-bold"
               style={{ color: "var(--text-primary)" }}
             >
               {education.degree} in {education.field}
-            </h3>
+            </h2>
             <p className="text-sm" style={{ color: "var(--text-tertiary)" }}>
               {education.institution} • {education.location}
             </p>

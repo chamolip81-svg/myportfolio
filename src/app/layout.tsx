@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Priyanshu Chamoli",
   },
   description:
-    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India. Exploring web development, networking, Linux, and virtual labs.",
   keywords: [
     "Priyanshu Chamoli",
     "Priyanshu Chamoli developer",
@@ -54,15 +54,24 @@ export const metadata: Metadata = {
     url: "https://www.priyanshuchamoli.dev",
     title: "Priyanshu Chamoli | IT Student & Developer",
     description:
-      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India. Exploring web development, networking, Linux, and virtual labs.",
     siteName: "Priyanshu Chamoli",
+    images: [
+      {
+        url: "https://www.priyanshuchamoli.dev/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Priyanshu Chamoli — IT Student & Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Priyanshu Chamoli | IT Student & Developer",
     description:
-      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+      "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India. Exploring web development, networking, Linux, and virtual labs.",
     creator: "@chamolip81",
+    images: ["https://www.priyanshuchamoli.dev/opengraph-image"],
   },
   robots: {
     index: true,

@@ -141,12 +141,12 @@ export default function ProjectsPage() {
                       </span>
                     </div>
 
-                    <h3
+                    <h2
                       className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {project.title}
-                    </h3>
+                    </h2>
                     <p
                       className="text-xs sm:text-sm line-clamp-3 leading-relaxed"
                       style={{ color: "var(--text-secondary)" }}
@@ -158,12 +158,12 @@ export default function ProjectsPage() {
                   {/* Highlights */}
                   <div className="p-6 space-y-4">
                     <div>
-                      <h4
+                      <h3
                         className="text-xs font-mono uppercase tracking-wider mb-2.5"
                         style={{ color: "var(--text-muted)" }}
                       >
                         Key Highlights
-                      </h4>
+                      </h3>
                       <ul className="space-y-1.5 text-xs" style={{ color: "var(--text-secondary)" }}>
                         {project.highlights.map((h, i) => (
                           <li key={i} className="flex items-start gap-2">
@@ -176,12 +176,12 @@ export default function ProjectsPage() {
 
                     {/* Tech Stack */}
                     <div>
-                      <h4
+                      <h3
                         className="text-xs font-mono uppercase tracking-wider mb-2"
                         style={{ color: "var(--text-muted)" }}
                       >
                         Tech Stack
-                      </h4>
+                      </h3>
                       <div className="flex flex-wrap gap-1.5">
                         {project.technologies.map((tech) => (
                           <span

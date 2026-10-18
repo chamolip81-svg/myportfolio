@@ -31,6 +31,7 @@ export default function Footer() {
                   alt="Priyanshu Chamoli logo"
                   width={28}
                   height={28}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>

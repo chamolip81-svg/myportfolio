@@ -138,12 +138,12 @@ export default function TravelDostPage() {
                 {phase.step}
               </span>
               <div>
-                <h4
+                <h3
                   className="text-sm font-semibold mb-1"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {phase.title}
-                </h4>
+                </h3>
                 <p
                   className="text-sm"
                   style={{ color: "var(--text-tertiary)" }}

@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   title: string;
   description?: string;
   align?: "left" | "center";
+  as?: "h1" | "h2";
 }
 
 export default function SectionHeading({
@@ -14,7 +15,10 @@ export default function SectionHeading({
   title,
   description,
   align = "center",
+  as = "h2",
 }: SectionHeadingProps) {
+  const HeadingTag = as;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,12 +37,12 @@ export default function SectionHeading({
       >
         {label}
       </span>
-      <h2
+      <HeadingTag
         className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
         style={{ color: "var(--text-primary)" }}
       >
         {title}
-      </h2>
+      </HeadingTag>
       {description && (
         <p
           className={`text-base md:text-lg leading-relaxed ${

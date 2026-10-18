@@ -130,3 +130,21 @@ test("robots.txt config allows crawling and references canonical sitemap", () =>
   assert.equal(rules.userAgent, "*");
   assert.equal(rules.allow, "/");
 });
+
+test("createPageMetadata includes valid absolute OpenGraph & Twitter images", () => {
+  const meta = createPageMetadata({
+    title: "About",
+    description: "About description",
+    path: "/about",
+  });
+
+  const ogImages = meta.openGraph?.images as Array<{ url: string; width: number; height: number }>;
+  assert.ok(Array.isArray(ogImages) && ogImages.length > 0);
+  assert.equal(ogImages[0].url, "https://www.priyanshuchamoli.dev/opengraph-image");
+  assert.equal(ogImages[0].width, 1200);
+  assert.equal(ogImages[0].height, 630);
+
+  const twitterImages = meta.twitter?.images as string[];
+  assert.ok(Array.isArray(twitterImages) && twitterImages.length > 0);
+  assert.equal(twitterImages[0], "https://www.priyanshuchamoli.dev/opengraph-image");
+});

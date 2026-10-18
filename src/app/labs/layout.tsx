@@ -1,9 +1,9 @@
 import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Interactive Labs",
+  title: "Interactive Labs & Architecture Blueprints",
   description:
-    "Educational interactive visualizations exploring networking concepts, AWS multi-tier VPC blueprints, the OSI model, IP subnetting calculations, HTTP flows, and Linux commands.",
+    "Interactive learning tools for networking concepts, AWS multi-tier VPC blueprints, OSI model layers, IP subnetting calculations, and Linux terminal commands.",
   path: "/labs",
   keywords: ["labs", "CIDR calculator", "VPC architect", "OSI model", "Linux terminal", "HTTP visualizer"],
 });

@@ -167,23 +167,39 @@ export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
                 return <CodeSnippet key={idx} code={code} />;
               }
               if (trimmed.startsWith("|")) {
-                const rows = trimmed.split("\n").filter((r) => !r.includes("---"));
+                const rawRows = trimmed.split("\n").filter(Boolean);
+                const headerRow = rawRows[0];
+                const dataRows = rawRows.slice(1).filter((r) => !r.includes("---"));
+                const headerCells = headerRow.split("|").filter(Boolean).map((c) => c.trim());
+
                 return (
-                  <div key={idx} className="overflow-x-auto my-6">
+                  <div key={idx} className="overflow-x-auto my-6 rounded-lg border border-[var(--border-primary)]">
                     <table className="w-full text-xs font-mono text-left border-collapse">
+                      <caption className="text-left text-xs text-[var(--text-muted)] p-3 font-sans border-b border-[var(--border-primary)] bg-[var(--bg-secondary)]">
+                        Technical Reference Table: {note.title}
+                      </caption>
+                      <thead>
+                        <tr style={{ background: "var(--bg-tertiary)", borderBottom: "1px solid var(--border-primary)" }}>
+                          {headerCells.map((cell, cIdx) => (
+                            <th key={cIdx} scope="col" className="p-2.5 font-bold text-[var(--text-primary)]">
+                              {cell}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
                       <tbody>
-                        {rows.map((row, rIdx) => {
+                        {dataRows.map((row, rIdx) => {
                           const cells = row.split("|").filter(Boolean).map((c) => c.trim());
                           return (
                             <tr
                               key={rIdx}
                               style={{
                                 borderBottom: "1px solid var(--border-primary)",
-                                background: rIdx === 0 ? "var(--bg-tertiary)" : "transparent",
+                                background: rIdx % 2 === 1 ? "rgba(255, 255, 255, 0.01)" : "transparent",
                               }}
                             >
                               {cells.map((cell, cIdx) => (
-                                <td key={cIdx} className="p-2.5">
+                                <td key={cIdx} className="p-2.5 text-[var(--text-secondary)]">
                                   {cell}
                                 </td>
                               ))}
