@@ -120,6 +120,10 @@ test("sitemap generates canonical non-redirecting URLs with valid dates", () => 
   // Ensure Travel Dost is present
   const travelDostEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/projects/travel-dost");
   assert.ok(travelDostEntry, "Travel Dost project route must be present in sitemap");
+
+  // Ensure Network Quest is present
+  const questEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/network-quest");
+  assert.ok(questEntry, "Network Quest route must be present in sitemap");
 });
 
 test("robots.txt config allows crawling and references canonical sitemap", () => {

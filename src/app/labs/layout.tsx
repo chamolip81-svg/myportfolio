@@ -1,11 +1,11 @@
 import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Interactive Labs & Architecture Blueprints",
+  title: "Interactive Networking Labs — OSI Model, Subnet Calculator & Linux Terminal",
   description:
-    "Interactive learning tools for networking concepts, AWS multi-tier VPC blueprints, OSI model layers, IP subnetting calculations, and Linux terminal commands.",
+    "Free interactive tools for learning networking: OSI model explorer, IPv4 subnet/CIDR calculator, HTTP request visualizer, Linux terminal simulator, and AWS VPC architecture blueprint.",
   path: "/labs",
-  keywords: ["labs", "CIDR calculator", "VPC architect", "OSI model", "Linux terminal", "HTTP visualizer"],
+  keywords: ["interactive networking labs", "CIDR calculator", "subnet calculator", "OSI model explorer", "AWS VPC architect", "Linux terminal simulator", "HTTP request visualizer"],
 });
 
 export default function LabsLayout({

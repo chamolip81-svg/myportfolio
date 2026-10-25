@@ -1335,6 +1335,47 @@ export default function LabsPage() {
           align="left"
         />
 
+        {/* Quick Tool Navigation Bar */}
+        <nav aria-label="Tool Quick Navigation" className="flex flex-wrap items-center gap-2 mb-10 pt-2">
+          <span className="text-xs font-mono text-[var(--text-muted)] mr-1">Jump to Tool:</span>
+          <a
+            href="#networking"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-blue-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            Networking Lab
+          </a>
+          <a
+            href="#cloud"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-cyan-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            AWS Cloud VPC
+          </a>
+          <a
+            href="#osi"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-purple-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            OSI Model Explorer
+          </a>
+          <a
+            href="#subnet"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-blue-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            Subnet & CIDR Calc
+          </a>
+          <a
+            href="#http"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-amber-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            HTTP Visualizer
+          </a>
+          <a
+            href="#terminal"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[var(--bg-tertiary)] border border-[var(--border-primary)] hover:border-emerald-500/40 text-[var(--text-secondary)] hover:text-white transition-all"
+          >
+            Linux Terminal
+          </a>
+        </nav>
+
         <div className="space-y-8">
           <NetworkingLab />
           <CloudVPCVisualizer />

@@ -3,7 +3,7 @@
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ id = "theme-toggle" }: { id?: string }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -16,7 +16,7 @@ export default function ThemeToggle() {
         color: "var(--text-secondary)",
       }}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      id="theme-toggle"
+      id={id}
     >
       {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
     </button>

@@ -1,11 +1,11 @@
 import { createPageMetadata, createBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Technical Notes & Architecture Guides",
+  title: "Technical Notes — TCP Handshake, Subnetting, DNS & Containers",
   description:
-    "In-depth technical writeups and study notes on networking fundamentals, TCP state machines, subnetting calculations, container isolation, and DNS architecture.",
+    "In-depth technical notes on the TCP 3-way handshake, CIDR subnetting math, DNS resolution process, and containers vs virtual machines with diagrams and examples.",
   path: "/notes",
-  keywords: ["study notes", "TCP handshake", "CIDR guide", "containers vs VMs", "DNS resolution"],
+  keywords: ["TCP handshake explained", "CIDR subnetting guide", "DNS resolution process", "containers vs VMs", "networking study notes"],
 });
 
 export default function NotesLayout({

@@ -7,7 +7,20 @@ export interface PageMetadataProps {
   description: string;
   path: string;
   keywords?: string[];
+  /** Set to "article" for technical notes; defaults to "website" */
+  ogType?: "website" | "article";
+  /** ISO date string for article:published_time (used when ogType is "article") */
+  publishedTime?: string;
+  /** ISO date string for article:modified_time (used when ogType is "article") */
+  modifiedTime?: string;
 }
+
+const defaultBrandKeywords = [
+  "Priyanshu Chamoli",
+  "Priyanshu Chamoli developer",
+  "Priyanshu Chamoli portfolio",
+  "Priyanshu Chamoli LinkedIn",
+];
 
 /**
  * Generates canonical, framework-native metadata for any page
@@ -16,38 +29,32 @@ export function createPageMetadata({
   title,
   description,
   path,
-  keywords = [],
+  keywords,
+  ogType = "website",
+  publishedTime,
+  modifiedTime,
 }: PageMetadataProps): Metadata {
   const url = path === "/" ? `${siteBaseUrl}/` : `${siteBaseUrl}${path}`;
+  const resolvedKeywords = keywords && keywords.length > 0 ? keywords : defaultBrandKeywords;
 
   return {
     title,
     description,
-    keywords: [
-      "Priyanshu Chamoli",
-      "Priyanshu Chamoli developer",
-      "Priyanshu Chamoli portfolio",
-      "Priyanshu Chamoli LinkedIn",
-      "Priyanshu Chamoli IT student",
-      "IT student",
-      "developer",
-      "Dehradun",
-      "networking",
-      "Linux",
-      "cloud computing",
-      "virtual labs",
-      ...keywords,
-    ],
+    // Page-specific keywords take priority without stuffing unrelated tags
+    keywords: resolvedKeywords,
     alternates: {
       canonical: url,
     },
     openGraph: {
-      type: "website",
+      type: ogType,
       locale: "en_IN",
       url,
       title: `${title} | Priyanshu Chamoli`,
       description,
       siteName: "Priyanshu Chamoli",
+      ...(ogType === "article" && publishedTime
+        ? { publishedTime, modifiedTime: modifiedTime ?? publishedTime }
+        : {}),
       images: [
         {
           url: `${siteBaseUrl}/opengraph-image`,
@@ -93,12 +100,15 @@ export function createTechArticleSchema({
   description,
   path,
   datePublished,
+  dateModified,
   tags,
 }: {
   title: string;
   description: string;
   path: string;
   datePublished: string;
+  /** ISO date for dateModified; defaults to datePublished if omitted */
+  dateModified?: string;
   tags: string[];
 }) {
   return {
@@ -108,6 +118,7 @@ export function createTechArticleSchema({
     description,
     url: `${siteBaseUrl}${path}`,
     datePublished,
+    dateModified: dateModified ?? datePublished,
     author: {
       "@type": "Person",
       "@id": "https://www.priyanshuchamoli.dev/#person",

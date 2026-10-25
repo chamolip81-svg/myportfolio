@@ -10,6 +10,7 @@ import {
   ArrowRight,
   Copy,
   Check,
+  FlaskConical,
 } from "lucide-react";
 import type { TechnicalNote } from "@/lib/data";
 
@@ -227,6 +228,38 @@ export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
             })}
           </div>
         </motion.div>
+
+        {/* Interactive Simulation Lab Cross-Reference */}
+        {note.relatedLab && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="glass-card p-6 md:p-8 mt-8 border border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-transparent relative overflow-hidden"
+          >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-xs font-mono text-[var(--accent-blue)]">
+                  <FlaskConical size={14} />
+                  <span>INTERACTIVE SIMULATION LAB</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
+                  {note.relatedLab.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-xl">
+                  {note.relatedLab.description}
+                </p>
+              </div>
+              <Link
+                href={note.relatedLab.path}
+                className="btn-primary text-xs shrink-0 inline-flex items-center gap-1.5"
+              >
+                Launch Lab
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+          </motion.div>
+        )}
 
         {/* Footer Navigation */}
         <div className="mt-10 flex items-center justify-between">

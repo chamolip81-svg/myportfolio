@@ -130,12 +130,12 @@ export default function Navbar() {
           {/* Desktop Right */}
           <div className="hidden md:flex items-center gap-2">
             <CommandPalette />
-            <ThemeToggle />
+            <ThemeToggle id="theme-toggle-desktop" />
           </div>
 
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
+            <ThemeToggle id="theme-toggle-mobile" />
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200"

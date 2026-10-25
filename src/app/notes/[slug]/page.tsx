@@ -28,6 +28,9 @@ export async function generateMetadata({
     description: note.description,
     path: `/notes/${note.slug}`,
     keywords: note.tags,
+    ogType: "article",
+    publishedTime: note.dateISO,
+    modifiedTime: note.dateModifiedISO,
   });
 }
 
@@ -53,7 +56,8 @@ export default async function NoteDetailPage({
     title: note.title,
     description: note.description,
     path: `/notes/${note.slug}`,
-    datePublished: "2025-01-15",
+    datePublished: note.dateISO,
+    dateModified: note.dateModifiedISO,
     tags: note.tags,
   });
 

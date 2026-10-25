@@ -48,6 +48,7 @@ export const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Labs", href: "/labs" },
+  { label: "Quest", href: "/network-quest" },
   { label: "Notes", href: "/notes" },
   { label: "Setup", href: "/setup" },
   { label: "Contact", href: "/contact" },
@@ -351,10 +352,20 @@ export interface TechnicalNote {
   title: string;
   description: string;
   date: string;
+  /** ISO 8601 date for structured data (e.g. "2026-10-10") */
+  dateISO: string;
+  /** ISO 8601 last-modified date for structured data */
+  dateModifiedISO: string;
   readTime: string;
   category: "Networking" | "Linux" | "Cloud" | "Architecture";
   tags: string[];
   content: string;
+  /** Related interactive simulation lab for internal linking & engagement */
+  relatedLab?: {
+    name: string;
+    description: string;
+    path: string;
+  };
 }
 
 export const technicalNotes: TechnicalNote[] = [
@@ -362,11 +373,18 @@ export const technicalNotes: TechnicalNote[] = [
     slug: "tcp-handshake-lifecycle",
     title: "Deconstructing the TCP 3-Way Handshake & State Machine",
     description:
-      "A deep dive into SYN, SYN-ACK, and ACK packets, sequence numbers, and how reliable transport connections are established and terminated.",
+      "Master the TCP 3-way handshake (SYN, SYN-ACK, ACK) and 4-way teardown with sequence number math, state machine diagrams, and Wireshark analysis.",
     date: "Oct 2026",
+    dateISO: "2026-10-10",
+    dateModifiedISO: "2026-10-10",
     readTime: "5 min read",
     category: "Networking",
     tags: ["TCP/IP", "Networking", "Protocols", "Wireshark"],
+    relatedLab: {
+      name: "Interactive Networking Lab & HTTP Visualizer",
+      description: "Experiment with packet handshakes, round-trip latency, and request-response cycles in real time.",
+      path: "/labs#networking",
+    },
     content: `
 ### Why the 3-Way Handshake Exists
 
@@ -421,11 +439,18 @@ When either endpoint is ready to close the connection, a 4-step teardown process
     slug: "cidr-subnetting-guide",
     title: "Subnetting Math: Demystifying CIDR & Host Ranges",
     description:
-      "How to calculate network addresses, broadcast addresses, and usable host counts from any IPv4 CIDR prefix without guesswork.",
+      "Step-by-step guide to IPv4 CIDR subnetting: learn how to calculate network, broadcast, and usable host ranges with cheat sheets and practical examples.",
     date: "Sep 2026",
+    dateISO: "2026-09-20",
+    dateModifiedISO: "2026-09-20",
     readTime: "6 min read",
     category: "Networking",
     tags: ["IPv4", "Subnetting", "CIDR", "Routing"],
+    relatedLab: {
+      name: "Interactive IPv4 Subnet & CIDR Calculator",
+      description: "Verify your subnet math interactively: inspect network, broadcast, wildcard masks, and binary bit boundaries.",
+      path: "/labs#subnet",
+    },
     content: `
 ### What is CIDR?
 
@@ -474,11 +499,18 @@ An IPv4 address consists of 32 bits, represented as 4 octets separated by dots (
     slug: "containers-vs-vms",
     title: "Namespaces & Cgroups: What Actually Separates Containers from VMs?",
     description:
-      "An architectural comparison between hardware-level hypervisors (Type 1 & Type 2) and Linux kernel isolation primitives.",
+      "Containers vs Virtual Machines explained: discover architectural differences between hypervisors and Linux kernel namespaces, cgroups, and rootfs isolation.",
     date: "Aug 2026",
+    dateISO: "2026-08-15",
+    dateModifiedISO: "2026-08-15",
     readTime: "7 min read",
     category: "Architecture",
     tags: ["Linux", "Docker", "Virtualization", "Kernel"],
+    relatedLab: {
+      name: "Simulated Linux Terminal",
+      description: "Practice Linux process, network inspection, and diagnostic commands in an interactive browser shell.",
+      path: "/labs#terminal",
+    },
     content: `
 ### The Fundamental Difference
 
@@ -525,11 +557,18 @@ Cgroups restrict and measure resource consumption:
     slug: "dns-resolution-path",
     title: "From Browser URL to IP: The Complete DNS Recursive Lookup Journey",
     description:
-      "Tracing what happens when you type a domain into your browser: resolver caches, Root hints, TLD servers, and authoritative nameservers.",
+      "Understand the DNS resolution process step-by-step: trace recursive queries from browser cache to Root hints, TLD nameservers, and authoritative responses.",
     date: "Jul 2026",
+    dateISO: "2026-07-28",
+    dateModifiedISO: "2026-07-28",
     readTime: "4 min read",
     category: "Networking",
     tags: ["DNS", "Networking", "Internet", "Web Architecture"],
+    relatedLab: {
+      name: "Interactive Networking Lab",
+      description: "Trace simulated DNS queries, routing hops, and packet delays through an interactive network topology.",
+      path: "/labs#networking",
+    },
     content: `
 ### The Problem DNS Solves
 

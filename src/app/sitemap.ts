@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/network-quest`,
+      lastModified: new Date("2026-10-25T00:00:00.000Z"),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/notes`,
       lastModified: new Date("2026-10-18T00:00:00.000Z"),
       changeFrequency: "weekly",
