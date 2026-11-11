@@ -52,13 +52,15 @@ export default function FeaturedProject() {
                     boxShadow: "0 8px 32px rgba(59, 130, 246, 0.2)",
                   }}
                 >
-                  <span className="text-2xl font-bold text-white">TD</span>
+                  <span className="text-2xl font-bold text-white">
+                    {project.id === "auralyn-audio" ? "AA" : "TD"}
+                  </span>
                 </div>
                 <p
                   className="text-sm font-mono"
                   style={{ color: "var(--text-muted)" }}
                 >
-                  Project Preview
+                  {project.category} Showcase
                 </p>
               </div>
             </div>

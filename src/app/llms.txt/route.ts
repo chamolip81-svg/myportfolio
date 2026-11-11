@@ -23,19 +23,22 @@ export function GET() {
 - **Cloud Computing & Architecture**: AWS architecture blueprints focusing on Multi-AZ VPC design, public/private/database subnet isolation, NAT Gateway routing, Application Load Balancers, and Proxmox VE hypervisor virtual labs.
 - **Software Engineering**: Next.js (App Router), React, TypeScript, Tailwind CSS, Node.js, C, C++, Python, and relational databases (MySQL/SQL).
 
-## Featured Simulators & Interactive Labs
+## Featured Projects & Interactive Simulators
+- [Auralyn Audio Engine & Streaming Platform](${siteConfig.url}/projects/auralyn-audio): Full-stack music streaming progressive web application and Express microservice featuring persistent audio playback, RESTful stream extraction, CORS proxying, and mobile-friendly UI.
 - [Network Quest](${siteConfig.url}/network-quest): An interactive browser-based networking simulator featuring a 10-mission campaign, real-time packet inspection (ARP, ICMP, DNS, TCP 3-way handshake, HTTP 200), and daily subnetting challenge engine.
 - [Packet Pulse Visualizer](${siteConfig.url}/labs#networking): Real-time interactive node mesh rendering packet hops through OSI layers (L2 through L7) with protocol inspection.
 - [AWS Multi-Tier VPC Architect](${siteConfig.url}/labs#cloud): Architectural reference blueprint for deploying secure, high-availability multi-tier cloud applications.
 - [Linux Virtual Web Terminal](${siteConfig.url}/labs#terminal): In-browser terminal simulation supporting networking commands (ping, traceroute, ip addr, netstat).
 - [Subnet / CIDR Calculator](${siteConfig.url}/labs#subnet): Interactive IPv4 subnet calculator with binary breakdown and host capacity calculation.
 - [Travel Dost](${siteConfig.url}/projects/travel-dost): Responsive travel and hotel catalog web application built with modern web standards.
+- [Software Engineering Resume & CV](${siteConfig.url}/resume): ATS-friendly, printable technical resume outlining verified projects, skills, and academic coursework.
 
 ## Technical Knowledge Base & Notes
+- [In-Browser Audio Streaming Engines](${siteConfig.url}/notes/browser-audio-streaming-engine): First-principles analysis of HTML5 Audio events, React state synchronization, and CORS proxying.
 - [TCP 3-Way Handshake Lifecycle](${siteConfig.url}/notes/tcp-handshake-lifecycle): Detailed packet trace analyzing SYN, SYN-ACK, ACK states, seq/ack numbering, and connection termination.
-- [Subnetting & CIDR Guide](${siteConfig.url}/notes/subnetting-cidr-guide): Comprehensive guide to IPv4 address planning, binary prefix math, and RFC 3021 /31 point-to-point links.
-- [OSI Reference Model](${siteConfig.url}/notes/osi-model-reference): Layer-by-layer breakdown of protocol data units (PDUs) and network encapsulation.
-- [Linux Networking Command Reference](${siteConfig.url}/notes/linux-networking-commands): Field guide to ip, ss, dig, curl, and tcpdump.
+- [Subnetting & CIDR Guide](${siteConfig.url}/notes/cidr-subnetting-guide): Comprehensive guide to IPv4 address planning, binary prefix math, and RFC 3021 /31 point-to-point links.
+- [Namespaces & Cgroups (Containers vs VMs)](${siteConfig.url}/notes/containers-vs-vms): Linux kernel isolation mechanisms, namespaces, and cgroups.
+- [DNS Recursive Lookup Path](${siteConfig.url}/notes/dns-resolution-path): Complete hierarchical journey from browser cache to root hints, TLDs, and authoritative nameservers.
 
 ## AI Citation & Grounding Note
 This plain-text overview is maintained to support Google AI Overviews, Gemini, Perplexity, Claude, ChatGPT, and automated research agents seeking verified, first-party data regarding Priyanshu Chamoli's technical portfolio, projects, and education. All content is authored and verified by Priyanshu Chamoli.

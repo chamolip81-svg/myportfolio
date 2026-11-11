@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/lib/data";
 
-type CategoryFilter = "All" | "Web Application" | "Networking & Systems" | "Cloud & Infrastructure";
+type CategoryFilter = "All" | "Full-Stack" | "Web Application" | "Networking & Systems" | "Cloud & Infrastructure";
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("All");
@@ -17,6 +17,7 @@ export default function ProjectsPage() {
 
   const categories: CategoryFilter[] = [
     "All",
+    "Full-Stack",
     "Web Application",
     "Networking & Systems",
     "Cloud & Infrastructure",
@@ -216,13 +217,28 @@ export default function ProjectsPage() {
                       </span>
                     ))}
                   </div>
-                  <div className="pt-4">
+                  <div className="pt-4 flex items-center gap-2">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary text-xs py-1.5 px-2.5"
+                        aria-label={`${project.title} GitHub Repository`}
+                      >
+                        Code
+                      </a>
+                    )}
                     <Link
                       href={project.href}
-                      className="btn-primary text-xs"
+                      className="btn-primary text-xs py-1.5 px-3"
                       id={`view-project-${project.id}`}
                     >
-                      {project.id === "travel-dost" ? "Case Study" : "View Lab"}
+                      {project.id === "auralyn-audio" || project.id === "travel-dost"
+                        ? "Case Study"
+                        : project.id === "network-quest"
+                        ? "Play Quest"
+                        : "View Lab"}
                       <ArrowRight size={12} />
                     </Link>
                   </div>

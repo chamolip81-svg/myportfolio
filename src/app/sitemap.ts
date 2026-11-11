@@ -30,6 +30,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/projects/auralyn-audio`,
+      lastModified: new Date("2026-11-10T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/resume`,
+      lastModified: new Date("2026-11-11T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/labs`,
       lastModified: new Date("2026-10-18T00:00:00.000Z"),
       changeFrequency: "monthly",
@@ -68,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const noteDates: Record<string, string> = {
+    "browser-audio-streaming-engine": "2026-11-10T00:00:00.000Z",
     "tcp-handshake-lifecycle": "2026-10-10T00:00:00.000Z",
     "cidr-subnetting-guide": "2026-09-20T00:00:00.000Z",
     "containers-vs-vms": "2026-08-15T00:00:00.000Z",

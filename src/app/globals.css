@@ -17,8 +17,8 @@
 
   --text-primary: #fafafa;
   --text-secondary: #a1a1aa;
-  --text-tertiary: #71717a;
-  --text-muted: #52525b;
+  --text-tertiary: #9c9ca8;
+  --text-muted: #8b8b96;
 
   --border-primary: #27272a;
   --border-secondary: #3f3f46;
@@ -74,13 +74,15 @@
   --bg-elevated: #ffffff;
 
   --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-tertiary: #71717a;
-  --text-muted: #a1a1aa;
+  --text-secondary: #27272a;
+  --text-tertiary: #3f3f46;
+  --text-muted: #475569;
 
-  --border-primary: #e4e4e7;
-  --border-secondary: #d4d4d8;
-  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-primary: #d4d4d8;
+  --border-secondary: #a1a1aa;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+
+  --accent-primary: #1d4ed8;
 
   --accent-glow: rgba(59, 130, 246, 0.08);
   --accent-glow-strong: rgba(59, 130, 246, 0.15);
@@ -138,6 +140,12 @@ body {
 ::selection {
   background: rgba(59, 130, 246, 0.3);
   color: var(--text-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
 }
 
 /* --- Grid Pattern Background --- */
@@ -410,4 +418,46 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* --- Skip to Content Link (WCAG 2.4.1) --- */
+.skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-primary);
+  color: #ffffff !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 10000;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: top 0.15s ease-in-out;
+}
+.skip-to-content:focus {
+  top: 1rem;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* --- Print Stylesheet --- */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+  .no-print,
+  #main-navbar,
+  footer,
+  .noise-overlay,
+  .skip-to-content {
+    display: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+    margin: 0 !important;
+  }
 }

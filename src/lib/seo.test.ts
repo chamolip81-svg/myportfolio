@@ -123,6 +123,18 @@ test("sitemap generates canonical non-redirecting URLs with valid dates", () => 
   const travelDostEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/projects/travel-dost");
   assert.ok(travelDostEntry, "Travel Dost project route must be present in sitemap");
 
+  // Ensure Auralyn is present
+  const auralynEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/projects/auralyn-audio");
+  assert.ok(auralynEntry, "Auralyn project route must be present in sitemap");
+
+  // Ensure Resume is present
+  const resumeEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/resume");
+  assert.ok(resumeEntry, "Resume route must be present in sitemap");
+
+  // Ensure In-Browser Audio note is present
+  const audioNoteEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/notes/browser-audio-streaming-engine");
+  assert.ok(audioNoteEntry, "Audio streaming engine note must be present in sitemap");
+
   // Ensure Network Quest is present
   const questEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/network-quest");
   assert.ok(questEntry, "Network Quest route must be present in sitemap");

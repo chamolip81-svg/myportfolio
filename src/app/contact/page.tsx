@@ -22,6 +22,8 @@ import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 type SubmissionStatus = "idle" | "submitting" | "success" | "activation" | "error";
 
 export default function ContactPage() {
+  const [formLoadedAt] = useState(() => Date.now());
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,54 +60,47 @@ export default function ContactPage() {
       setStatusMessage("");
 
       try {
-        const response = await fetch(
-          `https://formsubmit.co/ajax/${siteConfig.email}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              subject: formData.subject || `Message from ${formData.name}`,
-              message: formData.message,
-              _subject: formData.subject || `Portfolio Message from ${formData.name}`,
-              _template: "table",
-              _captcha: "false",
-            }),
-          }
-        );
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject || `Message from ${formData.name}`,
+            message: formData.message,
+            _hp_company: honeypot,
+            _formLoadedAt: formLoadedAt,
+          }),
+        });
 
         const data = await response.json().catch(() => ({}));
 
-        if (response.ok && (data.success === "true" || data.success === true)) {
-          setStatus("success");
-          setStatusMessage(
-            `Thank you, ${formData.name}! Your message has been sent directly to ${siteConfig.email}. I will review it and reply as soon as possible.`
-          );
-          setFormData({ name: "", email: "", subject: "", message: "" });
-        } else if (
-          typeof data.message === "string" &&
-          data.message.toLowerCase().includes("activation")
-        ) {
-          setStatus("activation");
-          setStatusMessage(
-            `Your message was received! If you are the site owner, FormSubmit sent a one-time activation link to ${siteConfig.email}. Click that link once to enable instant forwarding.`
-          );
+        if (response.ok && data.success) {
+          if (data.status === "activation") {
+            setStatus("activation");
+            setStatusMessage(data.message);
+          } else {
+            setStatus("success");
+            setStatusMessage(
+              data.message ||
+                `Thank you, ${formData.name}! Your message has been sent directly to ${siteConfig.email}. I will review it and reply as soon as possible.`
+            );
+            setFormData({ name: "", email: "", subject: "", message: "" });
+          }
         } else {
-          throw new Error(data.message || "Failed to deliver message");
+          throw new Error(data.message || "Failed to deliver message via server gateway");
         }
       } catch (err: unknown) {
         console.error("Direct send error:", err);
         setStatus("error");
         setStatusMessage(
-          "Could not send directly from browser. You can dispatch your message instantly with 1 click using the Gmail or Mail Client buttons below."
+          "Could not send directly through server gateway. You can dispatch your message instantly with 1 click using the Gmail or Mail Client buttons below."
         );
       }
     },
-    [formData, validate]
+    [formData, honeypot, formLoadedAt, validate]
   );
 
   const handleCopyEmail = useCallback(() => {
@@ -378,6 +373,20 @@ export default function ContactPage() {
                     </div>
                   </div>
                 )}
+
+                {/* Honeypot field (hidden from real users, traps automated scrapers) */}
+                <div style={{ display: "none" }} aria-hidden="true" className="hidden">
+                  <label htmlFor="hp_company">Company</label>
+                  <input
+                    id="hp_company"
+                    type="text"
+                    name="_hp_company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

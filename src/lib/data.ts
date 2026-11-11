@@ -13,6 +13,9 @@ import {
   Layers,
   BookOpen,
   Wrench,
+  FileText,
+  Music,
+  Gamepad2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -21,12 +24,12 @@ import {
 // ==========================================
 export const siteConfig = {
   name: "Priyanshu Chamoli",
-  title: "Priyanshu Chamoli | IT Student & Developer",
+  title: "Priyanshu Chamoli | Full-Stack & Frontend Developer | Systems & Cloud",
   description:
-    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
+    "Official engineering portfolio of Priyanshu Chamoli, a frontend and full-stack developer based in Dehradun, India, specializing in Next.js, React, Node.js, Linux infrastructure, and interactive simulators.",
   url: "https://www.priyanshuchamoli.dev",
   locale: "en_IN",
-  positioning: "IT Student & Developer",
+  positioning: "Frontend & Full-Stack Developer • Systems & Cloud",
   location: "Dehradun, Uttarakhand, India",
   email: "chamolip81@gmail.com",
   phone: "7668711674",
@@ -50,6 +53,7 @@ export const navItems: NavItem[] = [
   { label: "Labs", href: "/labs" },
   { label: "Quest", href: "/network-quest" },
   { label: "Notes", href: "/notes" },
+  { label: "Resume", href: "/resume" },
   { label: "Setup", href: "/setup" },
   { label: "Contact", href: "/contact" },
 ];
@@ -242,7 +246,7 @@ export const labs: Lab[] = [
 export interface Project {
   id: string;
   title: string;
-  category: "Web Application" | "Networking & Systems" | "Cloud & Infrastructure";
+  category: "Full-Stack" | "Web Application" | "Networking & Systems" | "Cloud & Infrastructure";
   description: string;
   longDescription: string;
   technologies: string[];
@@ -250,9 +254,61 @@ export interface Project {
   status: "completed" | "in-progress" | "prototype";
   highlights: string[];
   metrics?: { label: string; value: string }[];
+  github?: string;
+  live?: string;
 }
 
 export const projects: Project[] = [
+  {
+    id: "auralyn-audio",
+    title: "Auralyn Audio Engine & Streaming Platform",
+    category: "Full-Stack",
+    description:
+      "A full-stack audio streaming progressive web application and Express microservice with persistent playback, RESTful stream extraction, CORS proxying, and mobile-friendly UI.",
+    longDescription:
+      "Auralyn is a full-stack music streaming platform engineered with a decoupled React progressive web application frontend and an Express/Node.js REST backend. Built to solve the challenge of uninterrupted audio streaming across single-page application route transitions, it features custom audio event-loop synchronization, sliding-window buffer management, and secure CORS stream proxying.",
+    technologies: ["React", "Node.js", "Express", "Python Flask", "PWA", "Tailwind CSS", "REST APIs", "Railway"],
+    href: "/projects/auralyn-audio",
+    status: "completed",
+    highlights: [
+      "Decoupled architecture: React PWA client + Node.js REST Gateway + Python audio indexing service",
+      "Persistent singleton audio controller avoiding playback disruption across client route changes",
+      "Production CORS validation on Express supporting Railway, Vercel, and local developer environments",
+      "Optimized audio stream range requests preventing buffer underruns on mobile networks",
+    ],
+    metrics: [
+      { label: "Role", value: "Full-Stack Developer" },
+      { label: "Stack", value: "React + Node.js + Express" },
+      { label: "Status", value: "Production Deployed" },
+      { label: "Type", value: "Full-Stack Platform" },
+    ],
+    github: "https://github.com/chamolip81-svg/auralyn-backend",
+  },
+  {
+    id: "network-quest",
+    title: "Network Quest: Interactive Networking Simulator",
+    category: "Networking & Systems",
+    description:
+      "An interactive, 100% client-side packet routing simulator and educational game with 10 RFC-aligned missions, topology canvas rendering, and daily challenges.",
+    longDescription:
+      "Network Quest is an in-browser networking simulation engine designed to educate and test engineers on foundational networking mechanics. It simulates physical link state, ARP table resolution, subnet boundary checking, default gateway routing, DNS query cascades, and full TCP 3-way handshakes with zero external server dependencies.",
+    technologies: ["TypeScript", "Next.js", "React 19", "Canvas API", "Framer Motion", "RFC Protocols"],
+    href: "/network-quest",
+    status: "completed",
+    highlights: [
+      "10 RFC-aligned hands-on diagnostic missions covering Layers 1 through 7",
+      "Deterministic daily subnet challenge generator with seeded pseudo-random IP allocation",
+      "Interactive HTML5 Canvas topology visualization with animated packet hopping",
+      "100% client-side execution with local storage persistence and social milestone sharing",
+    ],
+    metrics: [
+      { label: "Missions", value: "10 Scenarios" },
+      { label: "Engine", value: "Pure TypeScript" },
+      { label: "Status", value: "Live Interactive" },
+      { label: "Coverage", value: "OSI Layers 1 - 7" },
+    ],
+    github: "https://github.com/chamolip81-svg/myportfolio",
+  },
   {
     id: "travel-dost",
     title: "Travel Dost",
@@ -275,6 +331,7 @@ export const projects: Project[] = [
       { label: "Status", value: "Completed" },
       { label: "Type", value: "Web Application" },
     ],
+    github: "https://github.com/chamolip81-svg/Practice",
   },
   {
     id: "network-packet-tracer",
@@ -369,6 +426,146 @@ export interface TechnicalNote {
 }
 
 export const technicalNotes: TechnicalNote[] = [
+  {
+    slug: "browser-audio-streaming-engine",
+    title: "State Management and Buffering in In-Browser Audio Streaming Engines",
+    description:
+      "A first-principles engineering breakdown of in-browser audio streaming: HTML5 Audio lifecycle events, Web Audio API buffers, React state reconciliation, and CORS stream proxying.",
+    date: "Nov 2026",
+    dateISO: "2026-11-10",
+    dateModifiedISO: "2026-11-10",
+    readTime: "7 min read",
+    category: "Architecture",
+    tags: ["JavaScript", "React", "Web Audio API", "Streaming", "Node.js", "Express", "PWA"],
+    relatedLab: {
+      name: "Auralyn Audio Engine Case Study",
+      description: "Explore the live full-stack implementation: React PWA client, Express REST microservice, and CORS proxy routing.",
+      path: "/projects/auralyn-audio",
+    },
+    content: `
+### The Core Engineering Challenge: Why Naive Audio Breaks in SPAs
+
+When engineers build an audio player inside a modern Single-Page Application (SPA) using React, Vue, or Next.js, the most common beginner instinct is to drop an \`<audio>\` element directly into a component tree:
+
+\`\`\`jsx
+// The Naive Pattern (DO NOT USE IN PRODUCTION)
+function Player({ currentTrack }) {
+  return <audio src={currentTrack.streamUrl} autoPlay controls />;
+}
+\`\`\`
+
+This approach immediately breaks when:
+1. **Component Unmounting:** The user navigates from \`/search\` to \`/artist\` or \`/queue\`. The component unmounts, the DOM element is destroyed, the native C++ media pipeline in the browser tears down the playback buffer, and audio abruptly stops.
+2. **Re-rendering Latency:** Any parent state change triggers re-renders. If props flutter or \`src\` re-binds, the browser resets playback to \`0:00\` or triggers a jarring buffer stutter.
+3. **CORS Streaming Failures:** Audio streams fetched from external CDNs or audio servers trigger cross-origin restrictions unless an intermediate proxy handles preflight requests.
+
+---
+
+### Scope & Architectural Truth: Implemented vs Theoretical
+
+To maintain strict engineering transparency, here is the exact separation between what is running in the actual **Auralyn codebase** versus advanced streaming theory:
+
+| Architectural Tier | Implemented in Auralyn Production Codebase | Advanced / Theoretical Future Pattern |
+|---|---|---|
+| **Audio Controller** | Singleton \`Audio\` instance managed outside React lifecycle | Multi-threaded Web Audio API \`AudioWorklet\` with custom DSP |
+| **State Synchronization** | Native DOM event listeners (\`timeupdate\`, \`waiting\`, \`canplay\`) updating centralized React state | Web Worker offloading via \`SharedArrayBuffer\` |
+| **Backend Gateway** | Node.js Express 4 ES Module microservice with CORS regex validation | Distributed Edge CDN with dynamic HLS chunk packaging |
+| **Stream Extraction** | Python Flask + \`ytmusicapi\` service resolving stream endpoints | In-house transcoder transcoding raw FLAC to Opus in real time |
+| **Transport** | HTTP 206 Partial Content range requests handled by browser media engine | Custom WebSocket / WebTransport binary chunk streaming |
+
+---
+
+### The Singleton Audio Controller Pattern
+
+The robust solution implemented in Auralyn decouples the **native browser media resource** from React's ephemeral component tree. A singleton controller instance is instantiated once in module scope, while React components merely observe its state:
+
+\`\`\`
++-----------------------------------------------------------+
+|                      React UI Layer                       |
+|   [NowPlayingBar]      [QueueView]      [TrackListRow]     |
+|          ^                  ^                  ^          |
+|          +------------------+------------------+          |
+|                             |                             |
+|               React State Hook (useAudioPlayer)            |
++-----------------------------+-----------------------------+
+                              | Dispatches Actions
+                              v
++-----------------------------------------------------------+
+|              Singleton Audio Engine (Vanilla JS)           |
+|                                                           |
+|   const audio = new Audio();                              |
+|                                                           |
+|   Audio Event Listeners:                                  |
+|   - 'timeupdate'   --> update currentTime state           |
+|   - 'waiting'      --> set isBuffering = true             |
+|   - 'playing'      --> set isPlaying = true, buffer = false|
+|   - 'ended'        --> trigger queue.next()               |
+|   - 'error'        --> dispatch retry or fallback proxy   |
++-----------------------------+-----------------------------+
+                              | HTTP Range Requests
+                              v
++-----------------------------------------------------------+
+|              Express.js REST Gateway / CORS Proxy          |
+|   - Validates allowed origins (Railway / Vercel)          |
+|   - Dispatches stream metadata & resolves byte streams     |
++-----------------------------------------------------------+
+\`\`\`
+
+---
+
+### Browser Media Event Loop & Buffer State Machine
+
+An audio stream is an asynchronous, network-dependent state machine. The browser does not load the entire file into memory at once; it negotiates chunks using **HTTP 206 Partial Content**.
+
+Key lifecycle events that must be handled:
+
+1. **\`loadstart\`**: The browser has initiated the socket connection to fetch audio headers.
+2. **\`loadedmetadata\`**: Duration, audio codec, and sample rate have been parsed. Seek bar max value can now be initialized.
+3. **\`canplay\`**: Sufficient bytes have arrived to begin playback, though future buffering will still occur.
+4. **\`waiting\`**: Network stall! The playback head has caught up to the download buffer. UI must display a loading spinner without resetting time.
+5. **\`playing\`**: Audio samples are physically flowing through the OS audio output device.
+6. **\`ended\`**: Final frame reached. Trigger autoplay for the next queue item.
+
+---
+
+### Overcoming CORS Restrictions with Express Proxying
+
+Modern browsers enforce strict cross-origin policies on \`<audio>\` elements when using Web Audio API analysis (\`createMediaElementSource\`) or custom headers. If the external audio endpoint does not return \`Access-Control-Allow-Origin\`, the browser halts decoding.
+
+In \`auralyn-backend/src/server.js\`, CORS is configured dynamically to allow authorized frontend clients while permitting programmatic server-to-server relaying:
+
+\`\`\`javascript
+// Actual pattern implemented in auralyn-backend
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://frontend-seven-sooty-87.vercel.app',
+  'https://auralyn.me',
+  'https://www.auralyn.me'
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+        return callback(null, true);
+      }
+      callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
+\`\`\`
+
+---
+
+### Summary of Architectural Takeaways
+
+1. **Never tie audio engine lifecycles directly to React component lifecycles.** Use a persistent singleton controller.
+2. **Respect the browser event loop.** Audio state changes originate from the media hardware and network socket, flowing *upward* into React state—never fight this natural hierarchy.
+3. **Proxy through a trusted backend** when audio metadata or streams require sanitized headers or CORS compliance across mobile web environments.
+    `,
+  },
   {
     slug: "tcp-handshake-lifecycle",
     title: "Deconstructing the TCP 3-Way Handshake & State Machine",
@@ -829,7 +1026,10 @@ export interface CommandItem {
 export const commandItems: CommandItem[] = [
   { label: "Home", href: "/", category: "Navigation", icon: Globe },
   { label: "About Priyanshu", href: "/about", category: "Navigation", icon: Code2 },
+  { label: "View Resume (ATS & PDF)", href: "/resume", category: "Navigation", icon: FileText },
   { label: "Projects Directory", href: "/projects", category: "Projects", icon: Globe },
+  { label: "Auralyn Audio Engine Case Study", href: "/projects/auralyn-audio", category: "Projects", icon: Music },
+  { label: "Network Quest Simulator", href: "/network-quest", category: "Projects", icon: Gamepad2 },
   { label: "Interactive Labs Hub", href: "/labs", category: "Labs", icon: Layers },
   { label: "Subnet & CIDR Calculator", href: "/labs#subnet", category: "Labs", icon: Server },
   { label: "OSI 7-Layer Reference", href: "/labs#osi", category: "Labs", icon: Layers },
@@ -838,6 +1038,7 @@ export const commandItems: CommandItem[] = [
   { label: "Linux Web Terminal", href: "/labs#terminal", category: "Labs", icon: Terminal },
   { label: "AWS Cloud VPC Blueprint", href: "/labs#cloud", category: "Labs", icon: Cloud },
   { label: "Technical Notes & Articles", href: "/notes", category: "Writing", icon: BookOpen },
+  { label: "Note: In-Browser Audio Streaming", href: "/notes/browser-audio-streaming-engine", category: "Writing", icon: Music },
   { label: "Note: TCP 3-Way Handshake", href: "/notes/tcp-handshake-lifecycle", category: "Writing", icon: BookOpen },
   { label: "Note: CIDR & Subnetting", href: "/notes/cidr-subnetting-guide", category: "Writing", icon: BookOpen },
   { label: "Note: Containers vs VMs", href: "/notes/containers-vs-vms", category: "Writing", icon: BookOpen },

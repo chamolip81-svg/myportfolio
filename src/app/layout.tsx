@@ -20,20 +20,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.priyanshuchamoli.dev"),
   title: {
-    default: "Priyanshu Chamoli | IT Student & Developer",
+    default: "Priyanshu Chamoli | Full-Stack & Frontend Developer | Systems & Cloud",
     template: "%s | Priyanshu Chamoli",
   },
   description:
-    "Official portfolio of Priyanshu Chamoli, an IT student and developer from Dehradun, India. Exploring web development, networking, Linux, and virtual labs.",
+    "Official portfolio of Priyanshu Chamoli, a frontend and full-stack developer based in Dehradun, India. Exploring Next.js, React, Node.js, networking, Linux, and virtual labs.",
   keywords: [
     "Priyanshu Chamoli",
     "Priyanshu Chamoli developer",
     "Priyanshu Chamoli portfolio",
     "Priyanshu Chamoli LinkedIn",
-    "Priyanshu Chamoli IT student",
-    "IT student",
-    "developer",
-    "Dehradun",
+    "Full-Stack developer",
+    "Frontend developer",
+    "Next.js developer",
+    "React developer",
+    "Node.js developer",
+    "TypeScript developer",
+    "Dehradun developer",
     "networking",
     "cloud computing",
     "Linux",
@@ -119,11 +122,16 @@ export default function RootLayout({
         <meta name="theme-color" content="#09090b" />
       </head>
       <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <ThemeProvider>
           {/* Noise overlay for texture */}
           <div className="noise-overlay" aria-hidden="true" />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
 
@@ -166,9 +174,17 @@ export default function RootLayout({
                     },
                   },
                   knowsAbout: [
+                    "React",
+                    "Next.js",
+                    "TypeScript",
+                    "Node.js",
+                    "Express.js",
+                    "JavaScript",
+                    "Tailwind CSS",
+                    "RESTful APIs",
+                    "Progressive Web Apps (PWA)",
                     "HTML",
                     "CSS",
-                    "JavaScript",
                     "C",
                     "C++",
                     "Python",
