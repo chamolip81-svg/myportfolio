@@ -169,3 +169,24 @@ export function createProjectSchema({
     keywords: technologies.join(", "),
   };
 }
+
+/**
+ * Creates FAQPage JSON-LD structured data for Google AI Overviews and answer retrieval
+ */
+export function createFaqSchema(
+  faqs: Array<{ question: string; answer: string }>
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+

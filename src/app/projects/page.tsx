@@ -235,12 +235,12 @@ export default function ProjectsPage() {
         {/* Labs CTA Banner */}
         <div className="mt-20 glass-card p-8 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h3
+            <h2
               className="text-lg font-bold mb-1"
               style={{ color: "var(--text-primary)" }}
             >
               Looking for Interactive Live Demos?
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm" style={{ color: "var(--text-tertiary)" }}>
               Step into the Virtual Labs to interact with live packet tracers, OSI explorers, and subnet calculators.
             </p>

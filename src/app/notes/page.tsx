@@ -116,6 +116,7 @@ export default function NotesPage() {
         </div>
 
         {/* Notes Grid */}
+        <h2 className="sr-only">Published Technical Articles & Architecture Notes</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {filteredNotes.map((note, idx) => (
             <motion.div

@@ -143,24 +143,27 @@ export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
           >
             {note.content.split("\n\n").map((block, idx) => {
               const trimmed = block.trim();
-              if (trimmed.startsWith("### ")) {
+              if (trimmed.startsWith("## ") || trimmed.startsWith("### ")) {
+                const headingText = trimmed.startsWith("## ")
+                  ? trimmed.replace("## ", "")
+                  : trimmed.replace("### ", "");
                 return (
-                  <h3
+                  <h2
                     key={idx}
-                    className="text-xl font-bold mt-8 mb-3 text-[var(--text-primary)]"
+                    className="text-xl sm:text-2xl font-bold mt-8 mb-3 text-[var(--text-primary)]"
                   >
-                    {trimmed.replace("### ", "")}
-                  </h3>
+                    {headingText}
+                  </h2>
                 );
               }
               if (trimmed.startsWith("#### ")) {
                 return (
-                  <h4
+                  <h3
                     key={idx}
-                    className="text-base font-bold mt-6 mb-2 text-[var(--text-primary)]"
+                    className="text-base sm:text-lg font-bold mt-6 mb-2 text-[var(--text-primary)]"
                   >
                     {trimmed.replace("#### ", "")}
-                  </h4>
+                  </h3>
                 );
               }
               if (trimmed.startsWith("```")) {
@@ -243,9 +246,9 @@ export default function NoteDetailClient({ note }: { note: TechnicalNote }) {
                   <FlaskConical size={14} />
                   <span>INTERACTIVE SIMULATION LAB</span>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
+                <h2 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                   {note.relatedLab.name}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-xl">
                   {note.relatedLab.description}
                 </p>

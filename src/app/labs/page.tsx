@@ -315,12 +315,12 @@ function OSIModelExplorer() {
                     {activeLayer.number}
                   </span>
                   <div>
-                    <h4
+                    <h3
                       className="text-lg font-bold"
                       style={{ color: activeLayer.color }}
                     >
                       {activeLayer.name}
-                    </h4>
+                    </h3>
                     <p
                       className="text-xs"
                       style={{ color: "var(--text-muted)" }}
@@ -332,12 +332,12 @@ function OSIModelExplorer() {
 
                 {/* Purpose */}
                 <div className="mb-4">
-                  <h5
+                  <h4
                     className="text-xs font-mono uppercase tracking-wider mb-1.5"
                     style={{ color: "var(--text-muted)" }}
                   >
                     Purpose
-                  </h5>
+                  </h4>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
@@ -348,12 +348,12 @@ function OSIModelExplorer() {
 
                 {/* Protocols */}
                 <div className="mb-4">
-                  <h5
+                  <h4
                     className="text-xs font-mono uppercase tracking-wider mb-1.5"
                     style={{ color: "var(--text-muted)" }}
                   >
                     Protocols
-                  </h5>
+                  </h4>
                   <div className="flex flex-wrap gap-1.5">
                     {activeLayer.protocols.map((p) => (
                       <span
@@ -373,12 +373,12 @@ function OSIModelExplorer() {
 
                 {/* Examples */}
                 <div className="mb-4">
-                  <h5
+                  <h4
                     className="text-xs font-mono uppercase tracking-wider mb-1.5"
                     style={{ color: "var(--text-muted)" }}
                   >
                     Examples
-                  </h5>
+                  </h4>
                   <ul className="space-y-1">
                     {activeLayer.examples.map((ex) => (
                       <li
@@ -395,12 +395,12 @@ function OSIModelExplorer() {
 
                 {/* Explanation */}
                 <div>
-                  <h5
+                  <h4
                     className="text-xs font-mono uppercase tracking-wider mb-1.5"
                     style={{ color: "var(--text-muted)" }}
                   >
                     How it works
-                  </h5>
+                  </h4>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ color: "var(--text-tertiary)" }}
@@ -1253,7 +1253,7 @@ function CloudVPCVisualizer() {
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border-primary)] mb-4">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)]">Component Inspector</span>
-                <h4 className="text-base font-bold text-[var(--text-primary)] mt-0.5">{selectedComp.name}</h4>
+                <h3 className="text-base font-bold text-[var(--text-primary)] mt-0.5">{selectedComp.name}</h3>
               </div>
               <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">
                 {selectedComp.tier}

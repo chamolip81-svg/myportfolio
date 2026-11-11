@@ -574,9 +574,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {faqs.map((faq) => (
               <div key={faq.q} className="glass-card p-5 space-y-2">
-                <h4 className="text-sm font-bold text-[var(--text-primary)]">
+                <h3 className="text-sm font-bold text-[var(--text-primary)]">
                   {faq.q}
-                </h4>
+                </h3>
                 <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
                   {faq.a}
                 </p>

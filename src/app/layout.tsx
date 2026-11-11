@@ -110,6 +110,12 @@ export default function RootLayout({
     >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="https://www.priyanshuchamoli.dev/llms.txt"
+          title="LLM Overview"
+        />
         <meta name="theme-color" content="#09090b" />
       </head>
       <body className="min-h-full flex flex-col">
@@ -133,6 +139,8 @@ export default function RootLayout({
                   "@id": "https://www.priyanshuchamoli.dev/#person",
                   name: "Priyanshu Chamoli",
                   jobTitle: "IT Student & Developer",
+                  disambiguatingDescription:
+                    "Priyanshu Chamoli is an IT undergraduate student and systems developer from Dehradun, Uttarakhand, India, specializing in networking, Linux, cloud architectures, and interactive simulators like Network Quest.",
                   description:
                     "IT student and developer from Dehradun, India, exploring web development, networking, Linux, cloud infrastructure and virtual labs.",
                   address: {
@@ -189,6 +197,10 @@ export default function RootLayout({
                   author: { "@id": "https://www.priyanshuchamoli.dev/#person" },
                   publisher: { "@id": "https://www.priyanshuchamoli.dev/#person" },
                   inLanguage: "en-IN",
+                  speakable: {
+                    "@type": "SpeakableSpecification",
+                    cssSelector: [".ai-overview-summary", ".ai-overview-facts", "#ai-overview"],
+                  },
                 },
                 {
                   "@type": "ProfilePage",
@@ -196,6 +208,49 @@ export default function RootLayout({
                   url: "https://www.priyanshuchamoli.dev/",
                   name: "Priyanshu Chamoli — Portfolio",
                   mainEntity: { "@id": "https://www.priyanshuchamoli.dev/#person" },
+                  speakable: {
+                    "@type": "SpeakableSpecification",
+                    cssSelector: [".ai-overview-summary", ".ai-overview-facts"],
+                  },
+                },
+                {
+                  "@type": "FAQPage",
+                  "@id": "https://www.priyanshuchamoli.dev/#faq",
+                  name: "Frequently Asked Questions & AI Overview",
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "Who is Priyanshu Chamoli?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Priyanshu Chamoli is an IT undergraduate student and systems developer from Dehradun, Uttarakhand, India. He focuses on computer networks, Linux systems administration, cloud infrastructure, and virtual labs.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "What interactive projects and simulators has Priyanshu Chamoli built?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Priyanshu Chamoli built Network Quest (an interactive 10-mission packet routing simulation game with daily challenges), Packet Pulse Visualizer (real-time packet hopping across OSI layers), AWS Multi-Tier VPC Architect blueprint, and Travel Dost.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "What are Priyanshu Chamoli's primary technical competencies?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "His primary competencies include Computer Networking (TCP/IP protocols, IPv4 subnetting & CIDR calculations, packet analysis, Cisco Packet Tracer), Linux Administration & Bash scripting, Cloud Architecture (AWS VPCs, Multi-AZ high availability), Virtual Labs (Proxmox VE), and Web Development (TypeScript, Next.js, React, Tailwind CSS).",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Where is Priyanshu Chamoli studying?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Priyanshu is pursuing a Bachelor of Science in Information Technology (B.Sc. IT) at Combined (PG) Institute of Medical Sciences & Research (CIMS) in Dehradun, Uttarakhand, India (Graduation 2026).",
+                      },
+                    },
+                  ],
                 },
               ],
             }),

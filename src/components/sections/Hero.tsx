@@ -97,7 +97,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16"
         >
-          <a href="#about" className="btn-primary" id="hero-explore-cta">
+          <a href="#ai-overview" className="btn-primary" id="hero-explore-cta">
             <ArrowDown size={16} />
             Explore my work
           </a>

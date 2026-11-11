@@ -6,10 +6,12 @@ import {
   createBreadcrumbSchema,
   createTechArticleSchema,
   createProjectSchema,
+  createFaqSchema,
 } from "./seo.ts";
 import sitemap from "../app/sitemap.ts";
 import robots from "../app/robots.ts";
 import { siteConfig, education } from "./data.ts";
+import { GET as getLLMsTxt } from "../app/llms.txt/route.ts";
 
 test("siteBaseUrl is valid HTTPS canonical URL", () => {
   assert.equal(siteBaseUrl, "https://www.priyanshuchamoli.dev");
@@ -152,3 +154,74 @@ test("createPageMetadata includes valid absolute OpenGraph & Twitter images", ()
   assert.ok(Array.isArray(twitterImages) && twitterImages.length > 0);
   assert.equal(twitterImages[0], "https://www.priyanshuchamoli.dev/opengraph-image");
 });
+
+test("createFaqSchema produces valid FAQPage Schema.org structure for AI Overviews", () => {
+  const faqs = [
+    { question: "Who is Priyanshu?", answer: "Priyanshu is an IT student." },
+    { question: "What is Network Quest?", answer: "An interactive network simulator." },
+  ];
+  const schema = createFaqSchema(faqs);
+
+  assert.equal(schema["@context"], "https://schema.org");
+  assert.equal(schema["@type"], "FAQPage");
+  assert.equal(schema.mainEntity.length, 2);
+  assert.equal(schema.mainEntity[0]["@type"], "Question");
+  assert.equal(schema.mainEntity[0].name, "Who is Priyanshu?");
+  assert.equal(schema.mainEntity[0].acceptedAnswer["@type"], "Answer");
+  assert.equal(schema.mainEntity[0].acceptedAnswer.text, "Priyanshu is an IT student.");
+});
+
+test("llms.txt route returns valid 200 text/plain markdown for AI agents", async () => {
+  const response = getLLMsTxt();
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("Content-Type"), "text/plain; charset=utf-8");
+
+  const body = await response.text();
+  assert.ok(body.includes("# Priyanshu Chamoli"));
+  assert.ok(body.includes("Network Quest"));
+  assert.ok(body.includes("Computer Networking"));
+  assert.ok(body.includes("Linux"));
+  assert.ok(body.includes("Dehradun"));
+  assert.ok(body.includes("https://www.priyanshuchamoli.dev/"));
+});
+
+test("sitemap.xml includes /llms.txt for AI discovery", () => {
+  const routes = sitemap();
+  const llmEntry = routes.find((r) => r.url === "https://www.priyanshuchamoli.dev/llms.txt");
+  assert.ok(llmEntry, "Expected /llms.txt to be listed in sitemap");
+  assert.equal(llmEntry.priority, 0.8);
+});
+
+test("robots.txt explicitly permits AI crawlers (Google-Extended, PerplexityBot, GPTBot, ClaudeBot)", () => {
+  const config = robots();
+  assert.ok(Array.isArray(config.rules));
+  const aiRule = config.rules.find((r) => Array.isArray(r.userAgent) && r.userAgent.includes("Google-Extended"));
+  assert.ok(aiRule, "Expected dedicated AI bot rule in robots.txt");
+  assert.ok(Array.isArray(aiRule.userAgent));
+  assert.ok(aiRule.userAgent.includes("Googlebot"));
+  assert.ok(aiRule.userAgent.includes("Google-Extended"));
+  assert.ok(aiRule.userAgent.includes("GPTBot"));
+  assert.ok(aiRule.userAgent.includes("PerplexityBot"));
+  assert.ok(aiRule.userAgent.includes("ClaudeBot"));
+  assert.equal(aiRule.allow, "/");
+});
+
+test("next.config includes HSTS, removes poweredByHeader, and enables AVIF/WebP", async () => {
+  const nextConfigModule = await import("../../next.config.ts");
+  const config = nextConfigModule.default;
+  assert.equal(config.poweredByHeader, false);
+  assert.equal(config.compress, true);
+  assert.deepEqual(config.images?.formats, ["image/avif", "image/webp"]);
+
+  const headers = await config.headers?.();
+  assert.ok(Array.isArray(headers) && headers.length > 0);
+  const globalHeaders = headers.find((h: { source: string }) => h.source === "/:path*");
+  assert.ok(globalHeaders, "Expected global headers config");
+  const hsts = globalHeaders.headers.find(
+    (h: { key: string }) => h.key === "Strict-Transport-Security"
+  );
+  assert.ok(hsts, "Expected Strict-Transport-Security header");
+  assert.ok(hsts.value.includes("max-age=63072000"));
+});
+
+
