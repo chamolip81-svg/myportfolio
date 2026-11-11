@@ -1,8 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, Star, ArrowRight, BookOpen, RotateCcw } from "lucide-react";
+import {
+  CheckCircle2,
+  Star,
+  ArrowRight,
+  BookOpen,
+  RotateCcw,
+  Share2,
+  Copy,
+  Check,
+} from "lucide-react";
 import type { Mission } from "@/lib/network-quest/types";
+import { LinkedinIcon } from "@/components/Icons";
 
 interface MissionCompleteModalProps {
   mission: Mission;
@@ -19,10 +30,30 @@ export default function MissionCompleteModal({
   onNextMission,
   onReplayMission,
 }: MissionCompleteModalProps) {
+  const [copied, setCopied] = useState(false);
   const stars = hintsUsed === 0 ? 3 : hintsUsed <= 1 ? 2 : 1;
   const baseScore = 500;
   const hintPenalty = hintsUsed * 75;
   const totalScore = Math.max(100, baseScore - hintPenalty + (hintsUsed === 0 ? 100 : 0));
+
+  const shareUrl = "https://www.priyanshuchamoli.dev/network-quest";
+  const shareText = `🎯 I completed Mission ${mission.number}: "${mission.title}" with ${stars} ⭐ in Network Quest! Can you solve the packet routing puzzle?`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    shareText
+  )}&url=${encodeURIComponent(shareUrl)}`;
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    shareUrl
+  )}`;
+
+  const handleCopyShare = async () => {
+    try {
+      await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback
+    }
+  };
 
   return (
     <div
@@ -102,6 +133,48 @@ export default function MissionCompleteModal({
               </Link>
             </div>
           )}
+
+          {/* Social Share & Backlink Row */}
+          <div className="pt-2 pb-1 border-t border-white/5">
+            <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)] mb-2">
+              <span className="flex items-center gap-1.5">
+                <Share2 size={12} className="text-cyan-400" />
+                <span>Share your achievement:</span>
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <a
+                href={twitterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors flex items-center justify-center gap-1.5"
+                title="Share on X (Twitter)"
+              >
+                <span>X / Post</span>
+              </a>
+
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 rounded-xl bg-[#0a66c2]/15 hover:bg-[#0a66c2]/25 border border-[#0a66c2]/30 text-xs font-mono text-cyan-300 transition-colors flex items-center justify-center gap-1.5"
+                title="Share on LinkedIn"
+              >
+                <LinkedinIcon size={12} />
+                <span>LinkedIn</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={handleCopyShare}
+                className="py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-[var(--text-secondary)] hover:text-white transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                title="Copy score & link to clipboard"
+              >
+                {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
+                <span>{copied ? "Copied!" : "Copy"}</span>
+              </button>
+            </div>
+          </div>
 
           {/* Action CTAs */}
           <div className="pt-4 flex flex-col sm:flex-row items-center gap-2.5">
